@@ -30,6 +30,7 @@ body {
 }
 
 #main-content {
+	margin-left: 1em;
 	width: 50%;
 	float: left;
 	border: 1px solid black;
@@ -37,6 +38,12 @@ body {
 
 #post-navigation {
 	
+}
+
+#post-navigation h3 {
+	font-size: 1.25em;
+	text-align: center;
+	font-weight: 300;
 }
 
 h1 {
