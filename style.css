@@ -10,17 +10,27 @@ body {
 	color: #262525;
 }
 
-#left-sidebar {
-	width: 20%;
-}
-
 #content-container {
 	padding: .5em;
+	overflow: auto;
 }
 
 #content-header {
 	margin-bottom: 1em;
 	overflow: auto;
+}
+
+#content-body {
+	overflow: auto;
+}
+
+#left-sidebar {
+	width: 20%;
+}
+
+#main-content {
+	width: 50%;
+	float: left;
 }
 
 #post-navigation {
