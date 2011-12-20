@@ -15,14 +15,18 @@
 
             <div id="content-body">
 
-                <div id="left-sidebar">
-                    <ul class="navigation-menu vertical-list">
-                    {% for post in site.posts %}
-                        <li>
-                            <a href="{{ post.url }}">{{ post.title }}</a>
-                            <em> {{ post.date | date_to_long_string}} </em>
-                        </li>
-                    {% endfor %}
+                <div id="left-sidebar" class="float-left">
+                	<h3>posts</h3>
+                	<div id="post-navigation">
+	                    <ul class="navigation-menu vertical-list">
+    	                {% for post in site.posts %}
+        	                <li>
+            	                <a href="{{ post.url }}">{{ post.title }}</a>
+                	            <em> {{ post.date | date_to_long_string}} </em>
+                    	    </li>
+	                    {% endfor %}
+	                	</ul>
+	                </div>
                 </div>
 
                 <div id="main-content">

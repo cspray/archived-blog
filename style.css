@@ -10,6 +10,10 @@ body {
 	color: #262525;
 }
 
+#left-sidebar {
+	width: 20%;
+}
+
 #content-container {
 	padding: .5em;
 }
@@ -17,6 +21,10 @@ body {
 #content-header {
 	margin-bottom: 1em;
 	overflow: auto;
+}
+
+#post-navigation {
+	
 }
 
 h1 {
@@ -28,4 +36,8 @@ h1 {
 .byline {
 	margin-left: 1em;
 	font-size: .8em;
+}
+
+.float-left {
+	float: left;
 }
