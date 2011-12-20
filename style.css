@@ -15,5 +15,12 @@ body {
 }
 
 h1 {
+	margin-bottom: 5px;
 	font-size: 2.5em;
+	font-weight: 300;
+}
+
+.byline {
+	margin-left: 1em;
+	font-size: .8em;
 }
