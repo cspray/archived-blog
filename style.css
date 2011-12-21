@@ -26,13 +26,13 @@ body {
 }
 
 #left-sidebar {
-	width: 20%;
+	width: 25%;
 	border: 1px solid black;
 }
 
 #main-content {
 	margin-left: 1em;
-	width: 75%;
+	width: 70%;
 }
 
 #article-content {
