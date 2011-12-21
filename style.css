@@ -121,8 +121,3 @@ div > h3 {
 .float-right {
 	float: right;
 }
-
-.fb_iframe_widget span {
-	margin-left: .5em;
-	margin-bottom: .75em;
-}
