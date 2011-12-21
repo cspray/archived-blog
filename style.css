@@ -55,6 +55,11 @@ body {
 	text-align: justify;
 }
 
+#main-content h2 {
+	font-size: 1.75em;
+	font-weight: 300;
+}
+
 #post-navigation li, #external-links li {
 	font-weight: 300;
 }
@@ -77,6 +82,11 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+hr {
+	margin-top: .5em;
+	margin-bottom: .5em;
 }
 
 div > h3 {
