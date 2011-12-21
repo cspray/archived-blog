@@ -103,7 +103,7 @@ div > h3 {
 	font-weight: 300;
 }
 
-.highlight {
+.highlight > * {
 	font-family: monospace !important;
 }
 
