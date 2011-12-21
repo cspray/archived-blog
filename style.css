@@ -120,3 +120,8 @@ div > h3 {
 .float-right {
 	float: right;
 }
+
+.connect_widget {
+	margin-left: .25em;
+	margin-bottom: .25em;
+}
