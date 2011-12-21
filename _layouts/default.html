@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <title>{{ page.title }}</title>
 		<link href="/style.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
 
+		<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+	  			if (d.getElementById(id)) return;
+  				js = d.createElement(s); js.id = id;
+		  		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
         <div id="content-container">
 
             <div id="content-header">            
@@ -18,11 +28,6 @@
     	    			<a href="http://github.com/cspray/SprayFire">
     	    			<li>
     	    				<img src="/img/sprayfire_logo.png" width="75" height="75" alt="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." title="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." />
-    	    			</li>
-    	    			</a>
-    	    			<a href="https://twitter.com/#!/charlesspray">
-    	    			<li>
-    	    				<img src="/img/twitter_logo.png" width="75" height="75" alt="Check out Charles Sprayberry's Twitter profile!" title="Check out Charles Sprayberry's Twitter profile!" />
     	    			</li>
     	    			</a>
     	    			<a href="http://stackexchange.com/users/387580">
@@ -63,7 +68,11 @@
             </div>
 
             <div id="content-footer">
-
+				
+				<div id="social-sharing">
+					<fb:like send="true" layout="button_count" width="450" show_faces="false" action="recommend" font="arial"></fb:like>
+				</div>
+				
             </div>
         
         </div>
