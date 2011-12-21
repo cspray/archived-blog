@@ -49,9 +49,12 @@ body {
 	text-align: justify;
 }
 
-#post-navigation li {
-	margin-bottom: .75em;
+#post-navigation li, #external-links li {
 	font-weight: 300;
+}
+
+#external-links li {
+	font-size: 1.25em;
 }
 
 h1 {
@@ -83,6 +86,10 @@ div > h3 {
 .horizontal-list li {
 	float: left;
 	margin-left: .75em;
+}
+
+.vertical-list li {
+	margin-bottom: .75em;
 }
 
 .byline {
