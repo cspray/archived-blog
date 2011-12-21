@@ -36,12 +36,13 @@ body {
 }
 
 #article-content {
+	padding: 5px;
 	width: 70%;
 	border: 1px solid black;
 }
 
 #article-content p {
-	padding: 2px;
+
 	margin-bottom: .75em;
 	line-height: 1.25em;
 	text-align: justify;
