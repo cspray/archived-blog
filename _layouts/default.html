@@ -36,6 +36,7 @@
 						<h3>posts</h3>
 	                    <ul class="navigation-menu vertical-list">
 	                    {% assign numposts = site.posts | size %}
+	                    "Num pots is equal to " {{ numposts }}
 	                    {% if numposts == 0 %}
 	                    	<li>There are no posts at this time.  Please check back later!</li>
 	                    {% else %}
