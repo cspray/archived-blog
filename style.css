@@ -25,22 +25,28 @@ body {
 	clear: both;
 }
 
+#content-footer {
+	background-color: white;
+	margin: 0 auto;
+	width: 90%;
+	height: 75px;
+	position: absolute;
+	border: 1px solid black;
+}
+
 #left-sidebar {
 	width: 20%;
-	border: 1px solid black;
 }
 
 #main-content {
 	margin: 0 auto;
 	width: 55%;
 	padding: 5px;
-	border: 1px solid black;
 	float: none;
 }
 
 #right-sidebar {
 	width: 20%;
-	border: 1px solid black;
 }
 
 #main-content p {
