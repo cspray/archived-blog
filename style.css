@@ -134,3 +134,7 @@ div > h3 {
 .float-right {
 	float: right;
 }
+
+.soft-margin-right {
+	margin-right: .5em;
+}
