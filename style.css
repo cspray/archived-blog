@@ -120,3 +120,7 @@ div > h3 {
 .float-right {
 	float: right;
 }
+
+.fb_edge_comment_widget {
+	margin-top: -375px;
+}
