@@ -35,7 +35,10 @@
                 	<div id="post-navigation">
 						<h3>posts</h3>
 	                    <ul class="navigation-menu vertical-list">
-    	                {% for post in site.posts %}
+	                    {% if site.posts | size === 0 %}
+	                    	<li>There are no posts at this time.  Please check back later!</li>
+	                    {% else %}
+	    	                {% for post in site.posts %}
         	                <li>
         	                	<div>
 	            	                <p class="post-url"><a href="{{ post.url }}">{{ post.title }}</a></p>
@@ -44,7 +47,8 @@
 
     	            	        </div>
                     	    </li>
-	                    {% endfor %}
+		                    {% endfor %}
+		                {% endif %}
 	                	</ul>
 	                </div>
                 </div>
