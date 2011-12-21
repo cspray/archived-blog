@@ -26,18 +26,18 @@ body {
 }
 
 #left-sidebar {
-	width: 25%;
+	width: 20%;
 	border: 1px solid black;
 }
 
 #main-content {
-	width: 50%;
+	width: 55%;
 	padding: 5px;
 	border: 1px solid black;
 }
 
 #right-sidebar {
-	width: 25%;
+	width: 20%;
 	border: 1px solid black;
 }
 
