@@ -54,12 +54,10 @@ body {
 }
 
 #main-content h2 {
+	margin-bottom: .75em;
 	font-size: 1.75em;
 	font-weight: 300;
 }
-
-
-
 
 #post-navigation li, #external-links li {
 	font-weight: 300;
