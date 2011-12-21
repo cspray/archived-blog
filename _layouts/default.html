@@ -35,8 +35,10 @@
 	                    <ul class="navigation-menu vertical-list">
     	                {% for post in site.posts %}
         	                <li>
-            	                <a href="{{ post.url }}">{{ post.title }}</a>
-                	            <em> {{ post.date | date_to_long_string}} </em>
+        	                	<div class="post-link">
+	            	                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+    	            	            <p><em> {{ post.date | date_to_long_string}} </em></p>
+    	            	        </div>
                     	    </li>
 	                    {% endfor %}
 	                	</ul>
