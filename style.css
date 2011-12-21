@@ -35,7 +35,7 @@ body {
 }
 
 #article-content {
-	width: 60%;
+	width: 50%;
 	border: 1px solid black;
 }
 
@@ -47,7 +47,7 @@ body {
 }
 
 #table-of-contents {
-	width: 35%;
+	width: 25%;
 	border: 1px solid black;
 }
 
