@@ -86,6 +86,7 @@ a:hover {
 
 hr {
 	height: 3px;
+	background-color: #262525;
 	margin-top: .5em;
 	margin-bottom: .5em;
 }
