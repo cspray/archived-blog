@@ -33,23 +33,14 @@ body {
 #main-content {
 	margin-left: 1em;
 	width: 70%;
-}
-
-#article-content {
 	padding: 5px;
-	width: 70%;
 	border: 1px solid black;
 }
 
-#article-content p {
+#main-content p {
 	margin-bottom: .75em;
 	line-height: 1.25em;
 	text-align: justify;
-}
-
-#table-of-contents {
-	width: 25%;
-	border: 1px solid black;
 }
 
 #post-navigation {
