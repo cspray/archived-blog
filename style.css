@@ -35,6 +35,7 @@ body {
 	width: 55%;
 	padding: 5px;
 	border: 1px solid black;
+	float: none;
 }
 
 #right-sidebar {
