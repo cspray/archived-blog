@@ -103,6 +103,10 @@ div > h3 {
 	font-weight: 300;
 }
 
+pre {
+	font-family: monospace;
+}
+
 .navigation-menu {
 	list-style: none;
 }
