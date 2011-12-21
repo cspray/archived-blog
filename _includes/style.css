@@ -126,7 +126,7 @@ div > h3 {
 	font-size: 1.25em;
 }
 
-.post-date {
+.post-author, .post-date {
 	margin-left: 1.25em;
 	font-size: .8em;
 }
