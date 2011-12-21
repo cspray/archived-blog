@@ -21,7 +21,6 @@ body {
 }
 
 #content-body {
-	padding-bottom: 45px;
 	overflow: auto;
 	clear: both;
 }
@@ -45,6 +44,7 @@ body {
 	margin: 0 auto;
 	width: 55%;
 	padding: 5px;
+	padding-bottom: 40px;
 	float: none;
 }
 
