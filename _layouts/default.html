@@ -35,7 +35,7 @@
                 	<div id="post-navigation">
 						<h3>posts</h3>
 	                    <ul class="navigation-menu vertical-list">
-	                    {% assign numposts = 'something' %}
+	                    {% assign numposts = site.posts.count %}
 	                    "Num posts is equal to " {{ numposts }}
 	                    {% if numposts == 0 %}
 	                    	<li>There are no posts at this time.  Please check back later!</li>
