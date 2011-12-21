@@ -78,7 +78,7 @@ h1 {
 	list-style: none;
 }
 
-.horizontal-list {
+.horizontal-list li {
 	float: left;
 	margin-left: .75em;
 }
