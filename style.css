@@ -29,6 +29,7 @@ body {
 #content-footer {
 	width: 100%;
 	height: 30px;
+	background-color: #262525;
 	position: fixed;
 	left: 0;
 	bottom: 0;
