@@ -36,6 +36,11 @@ body {
 	border: 1px solid black;
 }
 
+#main-content p {
+	margin-bottom: .75em;
+	line-height: 1.25em;
+}
+
 #post-navigation {
 	
 }
