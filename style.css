@@ -22,6 +22,7 @@ body {
 
 #content-body {
 	overflow: auto;
+	clear: both;
 }
 
 #left-sidebar {
@@ -59,6 +60,15 @@ h1 {
 	font-weight: 300;
 }
 
+.navigation-menu {
+	list-style: none;
+}
+
+.horizontal-list {
+	float: left;
+	margin-left: .75em;
+}
+
 .byline {
 	margin-left: 1em;
 	font-size: .8em;
@@ -66,4 +76,8 @@ h1 {
 
 .float-left {
 	float: left;
+}
+
+.float-right {
+	float: right;
 }
