@@ -28,13 +28,16 @@ body {
 
 #content-footer {
 	width: 100%;
-	height: 35px;
+	height: 30px;
 	position: fixed;
 	left: 0;
 	bottom: 0;
+	-moz-box-shadow: 5px 0px 0px 0px #262525;
+	-webkit-box-shadow: 5px 0px 0px 0px #262525;
+	box-shadow: 5px 0px 0px 0px #262525;
 }
 
-#left-sidebar {
+#left-sidebar, #right-sidebar {
 	width: 20%;
 }
 
@@ -43,10 +46,6 @@ body {
 	width: 55%;
 	padding: 5px;
 	float: none;
-}
-
-#right-sidebar {
-	width: 20%;
 }
 
 #main-content p {
@@ -59,6 +58,9 @@ body {
 	font-size: 1.75em;
 	font-weight: 300;
 }
+
+
+
 
 #post-navigation li, #external-links li {
 	font-weight: 300;
