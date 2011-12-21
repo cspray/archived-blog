@@ -13,6 +13,7 @@ body {
 	padding: 1em;
 	padding-bottom: 40px;
 	overflow: auto;
+	font-family: sans-serif;
 }
 
 #content-header {
