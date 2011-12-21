@@ -104,7 +104,7 @@ div > h3 {
 }
 
 .highlight {
-	font-family: monospace;
+	font-family: monospace !important;
 }
 
 .navigation-menu {
