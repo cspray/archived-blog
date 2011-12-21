@@ -31,9 +31,9 @@ body {
 }
 
 #main-content {
-	margin-left: 1em;
-	margin-right: 1em;
+	margin: 0 auto;
 	width: 75%;
+	float: none;
 }
 
 #article-content {
