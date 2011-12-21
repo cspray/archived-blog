@@ -17,7 +17,7 @@ body {
 
 #content-header {
 	margin-bottom: 1em;
-	overflow: auto;
+	overflow: visible;
 }
 
 #content-body {
