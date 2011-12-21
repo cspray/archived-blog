@@ -32,25 +32,7 @@
             <div id="content-body">
 
                 <div id="left-sidebar" class="float-left">
-                	<div id="post-navigation">
-						<h3>posts</h3>
-	                    <ul class="navigation-menu vertical-list">
-	                    {% if site.posts.size == 0 %}
-	                    	<li>There are no posts at this time.  Please check back later!</li>
-	                    {% else %}
-	    	                {% for post in site.posts %}
-        	                <li>
-        	                	<div>
-	            	                <p class="post-url"><a href="{{ post.url }}">{{ post.title }}</a></p>
-	            	                <p class="post-author">By: <strong>{{ post.author }}</strong>
-    	            	            <p class="post-date"><em>Dated {{ post.date | date_to_string}} </em></p>
-
-    	            	        </div>
-                    	    </li>
-		                    {% endfor %}
-		                {% endif %}
-	                	</ul>
-	                </div>
+					{% include post-navigation.html %}
                 </div>
 
                 <div id="right-sidebar" class="float-right">
