@@ -49,13 +49,6 @@ body {
 	text-align: justify;
 }
 
-#post-navigation h3 {
-	margin-bottom: .75em;
-	font-size: 1.5em;
-	text-align: center;
-	font-weight: 300;
-}
-
 #post-navigation li {
 	margin-bottom: .75em;
 	font-weight: 300;
@@ -74,6 +67,13 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+div > h3 {
+	margin-bottom: .75em;
+	font-size: 1.5em;
+	text-align: center;
+	font-weight: 300;
 }
 
 .navigation-menu {
