@@ -63,6 +63,10 @@ body {
 	font-weight: 300;
 }
 
+#external-links {
+	margin-bottom: .75em;
+}
+
 #external-links li {
 	font-size: 1.25em;
 	margin-bottom: .25em;
