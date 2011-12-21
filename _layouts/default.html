@@ -36,8 +36,8 @@
     	                {% for post in site.posts %}
         	                <li>
         	                	<div class="post-link">
-	            	                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-    	            	            <p><em> {{ post.date | date_to_long_string}} </em></p>
+	            	                <p class="post-url"><a href="{{ post.url }}">{{ post.title }}</a></p>
+    	            	            <p class="post-date"><em>Posted on {{ post.date | date_to_long_string}} </em></p>
     	            	        </div>
                     	    </li>
 	                    {% endfor %}
