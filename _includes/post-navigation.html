@@ -8,9 +8,9 @@
         	                <li>
         	                	<div>
 	            	                <p class="post-url"><a href="{{ post.url }}">{{ post.title }}</a></p>
+	            	                <p class="post-tags">{{ post.tags }}</p>
 	            	                <p class="post-author">By: <strong>{{ post.author }}</strong>
     	            	            <p class="post-date"><em>Dated {{ post.date | date_to_string}} </em></p>
-
     	            	        </div>
                     	    </li>
 		                    {% endfor %}
