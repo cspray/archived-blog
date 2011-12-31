@@ -32,13 +32,6 @@ hr {
 	margin-bottom: .5em;
 }
 
-#left-sidebar div > h3, #right-sidebar div > h3 {
-	margin-bottom: .75em;
-	font-size: 1.5em;
-	text-align: center;
-	font-weight: 300;
-}
-
 blockquote {
     padding: 5px;
     border-left: 5px solid gray;
@@ -79,6 +72,13 @@ blockquote {
 	width: 20%;
 }
 
+#left-sidebar div > h3, #right-sidebar div > h3 {
+	margin-bottom: .75em;
+	font-size: 1.5em;
+	text-align: center;
+	font-weight: 300;
+}
+
 #main-content {
 	margin: 0 auto;
 	width: 55%;
@@ -90,6 +90,13 @@ blockquote {
 	margin-bottom: .75em;
 	font-size: 1.75em;
 	font-weight: 300;
+}
+
+#main-content h3 {
+    border-bottom: 3px solid gray;
+    font-size: 1.25em;
+    font-weight: 300;
+    margin-bottom: .5em;
 }
 
 #main-content p {
