@@ -39,6 +39,11 @@ div > h3 {
 	font-weight: 300;
 }
 
+blockquote {
+    padding: 10px;
+    text-indent: .5em;
+}
+
 #content-container {
 	padding: 1em;
 	padding-bottom: 40px;
