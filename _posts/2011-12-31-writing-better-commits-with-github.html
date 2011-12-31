@@ -17,7 +17,7 @@ share and track your source code using <a href="http://git-scm.com/">git</a>!
 I'm constantly evaluating what I'm doing, how I'm doing it and what tools I'm using.  Lately I've been
 thinking about the way I use <strong>git</strong>, my version control software of choice.  Looking
 through some of the commits for SprayFire I can tell that my commit strategy needs some work.  Commit
-messages are sometimes length or don't really convey what the commit is doing.  What are some things
+messages are sometimes lengthy or don't really convey what the commit is doing.  What are some things
 that I can do to improve my commits and make for a more maintainable project?</p>
 
 <h3>commit, commit, commit</h3>
@@ -30,3 +30,35 @@ become more complex.  It is important to establish a "muscle memory" if you will
 your small, simple classes will wind up translating over into the bigger, complex classes.  If you
 <em>always</em> commit early and often then you never wind up finding yourself refactoring an entire file
 between commits.</p>
+
+<h3>thou shalst format thy commits</h3>
+<p>Please, for all that is good and right in this world, have a consistent format for commit messages.
+While my own messages could certainly use some work in this regard one of the things I do adhere to
+is a 3 letter prefix on every commit that tells me what I'm doing.  Here's a list of my prefixes
+and what they mean:</p>
+
+```diff
+---------------------------------------------------------------------------------
+| Prefix                    |       Meaning                                     |
+---------------------------------------------------------------------------------
+|   ADD                     | I have created a new file that did not previously |
+|                           | exist in the repository.                          |
+---------------------------------------------------------------------------------
+|   UPD                     | I have updated a file that already exists in the  |
+|                           | repository.                                       |
+---------------------------------------------------------------------------------
+|   DEL                     | I have removed a file from the repository.        |
+---------------------------------------------------------------------------------
+|   DEL & ADD               | I have renamed or moved a file                    |
+---------------------------------------------------------------------------------
+```
+
+<p>This makes it easy to look through commits and tell at a glance what I've done.  It also makes looking
+for commits with `git log` extremely easy.  Wanna know about any deleted files?  As simple as,
+<code>git log --grep=DEL</code>.</p>
+
+<p>Although I have a prefix strategy after that it has been pretty much free-for-all.  Perhaps instead
+I should have a concrete format for commits.  Maybe something that looks like:
+
+<code><i>prefix</i> <i>class or file name</i> <i>message</i> [<i>issue link</i>]</code>
+</p>
