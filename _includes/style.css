@@ -108,7 +108,7 @@ blockquote {
 	text-align: justify;
 }
 
-#main-content pre {
+#main-content pre, #main-content ul {
     margin: .5em auto;
     width: 95%;
 }
