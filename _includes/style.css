@@ -109,7 +109,7 @@ blockquote {
 }
 
 #main-content pre {
-    margin: 0 auto;
+    margin: .5em auto;
     width: 95%;
 }
 
