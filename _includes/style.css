@@ -40,8 +40,9 @@ div > h3 {
 }
 
 blockquote {
-    padding: 10px;
-    text-indent: .5em;
+    padding: 5px;
+    border-left: 3px solid gray;
+    margin-left: .5em;
 }
 
 #content-container {
