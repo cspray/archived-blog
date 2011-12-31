@@ -108,6 +108,11 @@ blockquote {
 	text-align: justify;
 }
 
+#main-content p pre {
+    margin: 0 auto;
+    width: 95%;
+}
+
 #post-navigation li, #external-links li {
 	font-weight: 300;
 }
