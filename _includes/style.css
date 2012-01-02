@@ -43,6 +43,11 @@ blockquote {
     margin-left: .25em;
 }
 
+code {
+    background-color: white;
+    padding: 2px;
+}
+
 #content-container {
 	padding: 1em;
 	padding-bottom: 40px;
