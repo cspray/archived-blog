@@ -3,6 +3,7 @@ layout: default
 title: comments aren't evil; comment your code
 author: Charles Sprayberry
 author_link: http://www.github.com/cspray/
+published: false
 ---
 
 <h2>comments aren't evil; comment your code</h2>
@@ -37,7 +38,7 @@ bad.</p>
 code.  Unnecessary comments really are bad for your codebase.  They're clutter, can be misleading and
 are a pain to keep up to date, so nobody keeps them up to date.  And certainly if you're doing something like...</p>
 
-<pre style="background-color:white;">
+<pre style="background-color:white;margin-bottom:.5em;">
 $foo = 'foo';     // assign 'foo' to $foo
 $foo .= 'bar';    // $foo is now 'foobar'
 
@@ -132,10 +133,10 @@ $errorCallback = function($severity, $message, $file = null, $line = null, $cont
 feel free to fork and make changes or improvements.  If you make a really cool improvement let me know!</blockquote>
 
 <p>The closure is pretty simple really.  It takes the appropriate arguments needed to satisfy the
-<a href="http://www.php.net/manual/en/function.set-error-handler.php"><code>set_error_handler()</code></a> callback.  It also uses an array-by-reference outside
-of the closure to store the errors so we can access them later.  I added a bit of severity normalization
-so error info doesn't have seemingly random integers in them.  What may be "tricky", particularly to a
-new developer on the project is the last little bit involving the <code>$unhandledSeverity</code>.  What
+<a href="http://www.php.net/manual/en/function.set-error-handler.php"><code>set_error_handler()</code></a> callback.
+It also uses an array-by-reference outside of the closure to store the errors so we can access them later.  I
+added a bit of severity normalization so error info doesn't have seemingly random integers in them.  What may be "tricky",
+particularly to a new developer on the project is the last little bit involving the <code>$unhandledSeverity</code>.  What
 is that?  Anybody can see that for <code>E_RECOVERABLE_ERROR</code> we're returning false and internal
 PHP error handling continues.  But, why?  Let's go ahead and take that out.  I mean its a recoverable
 error right?  So, we should probably be doing something with it.</p>
