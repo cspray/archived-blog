@@ -136,10 +136,10 @@ feel free to fork and make changes or improvements.  If you make a really cool i
 <a href="http://www.php.net/manual/en/function.set-error-handler.php"><code>set_error_handler()</code></a> callback.
 It also uses an array-by-reference outside of the closure to store the errors so we can access them later.  I
 added a bit of severity normalization so error info doesn't have seemingly random integers in them.  What may be "tricky",
-particularly to a new developer on the project is the last little bit involving the <code>$unhandledSeverity</code>.  What
+particularly to a new developer on the project, is the last little bit involving the <code>$unhandledSeverity</code>.  What
 is that?  Anybody can see that for <code>E_RECOVERABLE_ERROR</code> we're returning false and internal
 PHP error handling continues.  But, why?  Let's go ahead and take that out.  I mean its a recoverable
-error right?  So, we should probably be doing something with it.</p>
+error, right?  So, we should probably be doing something with it.</p>
 
 <p><b>Wrong.</b></p>
 
@@ -164,7 +164,7 @@ errors will occur later.</p>
 {% endhighlight %}
 
 <p style="margin-top:1em;">I would definitely say that the added "clutter" is far outweighed by the <b>extremely, useful information</b> that
-the comment conveys and would be difficult to say in code.  You won't find many in-line comments on my
+the comment conveys and would be difficult to say in code.  You won't find many in-line comments in my
 code but anytime I think something looks a little too clever or isn't <i>perfectly clear</i> as to what
 is going on I'll throw a simple comment for explanation.</p>
 
