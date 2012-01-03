@@ -45,7 +45,7 @@ $foo = 'foo';     // assign 'foo' to $foo
 $foo .= 'bar';    // $foo is now 'foobar'
 
 $foo = someMethod($foo);     // call someMethod() on $foo
-{% end highlight %}
+{% endhighlight %}
 
 <p>Please, <B>PLEASE</b>, stop doing this.  Please.</p>
 
@@ -77,7 +77,7 @@ really ever know what type a variable is until you do some kind of test on it.  
     public function getFoo() {
         // some code is here...it returns something
     }
-{% end highlight %}
+{% endhighlight %}
 
 <p>See, that's not so bad is it?  You're not really adding a lot of clutter but you're giving users of
 your API the knowledge that when I call <code>getFoo()</code> I'm gonna get an object, and that object
