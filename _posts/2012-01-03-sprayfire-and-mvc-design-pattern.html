@@ -74,8 +74,8 @@ data, its all just a <em>response</em>.
 <h3>Controller talks to Model for the Responder</h3>
 
 <p>We have a layer to gather the appropriate data for a response, Model.  We have a layer to generate that response and send it to the user,
-Responder.  Now we need a way to get that data from the Model to the Responder.  This is where Controller comes in.  Think of the
-controller as a translator of sorts.  The Model and Responder are two foreign dignitaries that must work together but don't speak each
+Responder.  Now we need a way to get that data from the Model to the Responder.  This is where Controller comes in, think of it
+as a translator of sorts.  The Model and Responder are two foreign dignitaries that must work together but don't speak each
 other's language.  The Controller is there to facilitate this communication.  A request comes in, the Controller talks to the Model, gets
 the appropriate data and then "translates" it into something a Responder can use.  Ultimately, that's all the Controller is responsible for.
 Getting data from the Model to the Responder.</p>
