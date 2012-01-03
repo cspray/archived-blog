@@ -68,7 +68,7 @@ Well, in SprayFire the "View" is responsible for generating a <strong>response</
 the Controller from the Model.  Since sending HTTP headers is so directly tied to sending output we also delegate that
 responsibility to the "View" as well.  If you boil away all the extra stuff you wind up coming to the realization that the
 "View" is really generating and sending a response.  This sounds to me more like a <strong>Responder</strong> and not something
-that has a graphical view.</p>
+that is a View.</p>
 
 <p>An obvious example of a Responder would be <code>HtmlResponder</code>.  It would take data from the Controller, put that
 data into some kind of HTML template system and then output the resulting HTML.  Pretty simple stuff really.  A <code>JsonResponder</code>
@@ -89,8 +89,8 @@ Getting data from the Model to the Responder.</p>
 <h3>there's more to web MVC than the M, the <del>V</del> R, and the C</h3>
 
 <p>Much like other frameworks SprayFire uses other objects to help facilitate the interaction of the three primary layers.  I won't go into
-much detail about these objects here but I will list some of them.  Other articles will come that discusses their role in SprayFire's
-interpretation of the MVC design pattern.</p>
+much detail about these objects here but I will list some of them.  Other articles will come that discusses their role in <strong>MRC</strong>,
+SprayFire's interpretation of the MVC design pattern.</p>
 
 <ul style="list-style-position:inside;">
     <li>Front Controller</li>
