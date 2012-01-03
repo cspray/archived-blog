@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: rgb(240, 240, 240);
+	background-color: rgb(250, 250, 250);
 	color: #262525;
 	font-family: sans-serif;
 }
@@ -68,7 +68,7 @@ code {
 	margin: 0 auto;
 	width: 100%;
 	height: 25px;
-	background-color: #F2E9E9;
+	background-color: rgb(250, 250, 250);
 	position: fixed;
 	left: 0;
 	bottom: 0;
