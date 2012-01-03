@@ -131,6 +131,10 @@ code {
 	margin-bottom: .25em;
 }
 
+#disqus_thread {
+    margin-top: 1em;
+}
+
 .navigation-menu {
 	list-style: none;
 }
