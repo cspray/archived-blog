@@ -38,12 +38,14 @@ bad.</p>
 code.  Unnecessary comments really are bad for your codebase.  They're clutter, can be misleading and
 are a pain to keep up to date, so nobody keeps them up to date.  And certainly if you're doing something like...</p>
 
-<pre style="background-color:white;margin-bottom:.5em;padding:5px;">
+{% highlight php %}
+<?php
+
 $foo = 'foo';     // assign 'foo' to $foo
 $foo .= 'bar';    // $foo is now 'foobar'
 
 $foo = someMethod($foo);     // call someMethod() on $foo
-</pre>
+{% end highlight %}
 
 <p>Please, <B>PLEASE</b>, stop doing this.  Please.</p>
 
@@ -65,15 +67,17 @@ the <i>type</i> being returned.  This is highly important with a dynamically typ
 really ever know what type a variable is until you do some kind of test on it.  Here's an example of a,
 <i>gasp</i>, documented getter.</p>
 
-<pre style="background-color:white;padding:5px;">
+{% highlight php %}
+<?php
+    // inside a class somewhere...
 
-/**
- * @return A Foo object that stores info about each doohickey
- */
-public function getFoo() {
-    // some code is here...it returns something
-}
-</pre>
+    /**
+     * @return A Foo object that stores info about each doohickey
+     */
+    public function getFoo() {
+        // some code is here...it returns something
+    }
+{% end highlight %}
 
 <p>See, that's not so bad is it?  You're not really adding a lot of clutter but you're giving users of
 your API the knowledge that when I call <code>getFoo()</code> I'm gonna get an object, and that object
