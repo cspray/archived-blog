@@ -142,15 +142,23 @@ code {
     margin: 0 auto;
     margin-bottom: 1em;
     font-size: 1.5em;
-    border: 2px solid black;
+    border: 2px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 
 #comment-disclaimer .comment-status-enabled {
-    color: rgb(0, 250, 0);
+    color: rgb(255, 255, 255);
+    border-color: rgb(0, 255, 0);
+    background-color: rgba(0, 255, 0, .5);
 }
 
 #comment-disclaimer .comment-status-disabled {
-    color: rgb(250, 0, 0);
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 0, 0);
+    background-color: rgb(255, 0, 0, .5);
 }
 
 #disqus_thread {
