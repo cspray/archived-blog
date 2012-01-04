@@ -137,12 +137,14 @@ code {
 }
 
 #comment-disclaimer .comment-status-enabled {
+    text-align: center;
     margin: 0 auto;
     font-size: 1.5em;
     color: rgb(0, 250, 0);
 }
 
-#comment-disclaimer .comment-status-enabled {
+#comment-disclaimer .comment-status-disabled {
+    text-align: center;
     margin: 0 auto;
     font-size: 1.5em;
     color: rgb(250, 0, 0);
