@@ -140,7 +140,6 @@ code {
 #comment-disclaimer .comment-status {
     text-align: center;
     margin: 0 auto;
-    margin-bottom: 1em;
     font-size: 1.5em;
     border: 2px solid;
     padding-top: 5px;
@@ -166,6 +165,7 @@ code {
 #comment-disclaimer .comment-jump-ad {
     font-size: .75em;
     margin-bottom: .75em;
+    margin-bottom: 1em;
 }
 
 #disqus_thread {
