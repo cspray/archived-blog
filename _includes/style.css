@@ -147,6 +147,7 @@ code {
     padding-bottom: 5px;
     border-radius: 10px;
     -moz-border-radius: 10px;
+    font-weight: 800;
 }
 
 #comment-disclaimer .comment-status-enabled {
