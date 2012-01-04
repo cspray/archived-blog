@@ -163,6 +163,11 @@ code {
     background-color: rgba(255, 0, 0, .5);
 }
 
+#comment-disclaimer .comment-jump-ad {
+    font-size: .75em;
+    margin-bottom: .75em;
+}
+
 #disqus_thread {
     margin-top: 1em;
 }
