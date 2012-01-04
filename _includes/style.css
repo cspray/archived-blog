@@ -148,6 +148,7 @@ code {
     border-radius: 10px;
     -moz-border-radius: 10px;
     font-weight: 800;
+    letter-spacing: 2px;
 }
 
 #comment-disclaimer .comment-status-enabled {
