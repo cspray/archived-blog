@@ -213,3 +213,7 @@ code {
 .soft-margin-right {
 	margin-right: .5em;
 }
+
+.soft-margin-left {
+    margin-left: .5em;
+}
