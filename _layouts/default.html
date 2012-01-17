@@ -32,18 +32,20 @@
             </div>
 
             <div id="content-body">
-
                 <div id="left-sidebar" class="float-left">
 					{% include post-navigation.html %}
                 </div>
 
                 <div id="right-sidebar" class="float-right">
-					{% include external-links.html %}
-					{% include good-reads.html %}
+                    {% if page.title == home %}
+					    {% include external-links.html %}
+					    {% include good-reads.html %}
+					{% endif %}
 					{% include comment-disclaimer.html %}
                 </div>
 
                 <div id="main-content">
+
 	                {{ content }}
 
 	                {% if page.disqus_enabled == true %}
