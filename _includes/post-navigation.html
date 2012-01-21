@@ -6,7 +6,7 @@
 	                    {% else %}
 	    	                {% for post in site.posts %}
         	                <li>
-        	                	<a href="{{ post.url }}"><div>
+        	                	<a class="post-link" href="{{ post.url }}"><div>
 	            	                <p class="post-url">{{ post.title }}</p>
 	            	                <p class="post-author">By: <strong>{{ post.author }}</strong>
     	            	            <p class="post-date"><em>Dated {{ post.date | date_to_string}} </em></p>
