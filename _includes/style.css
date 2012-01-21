@@ -214,6 +214,10 @@ a.post-link:hover {
     text-decoration: none;
 }
 
+a.post-link:hover .post-url {
+    text-decoration: underline;
+}
+
 .float-left {
 	float: left;
 }
