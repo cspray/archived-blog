@@ -210,8 +210,8 @@ code {
 	color: rgb(95, 95, 95);
 }
 
-a:hover > div > .post-author, a:hover > div > .post-date {
-    text-decoration:none;
+a:hover .post-author, a:hover .post-date {
+    text-decoration: none;
 }
 
 .float-left {
