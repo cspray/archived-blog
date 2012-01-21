@@ -122,7 +122,7 @@ code {
 	font-weight: 300;
 }
 
-#post-navigation li > div {
+#post-navigation li > a > div {
     padding: 5px;
     border: 2px solid rgba(149, 55, 63, .6);
     margin-bottom: .5em;
