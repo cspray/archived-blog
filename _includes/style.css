@@ -210,7 +210,7 @@ code {
 	color: rgb(95, 95, 95);
 }
 
-a:hover > .post-author, a:hover > .post-date {
+a:hover > div > .post-author, a:hover > div > .post-date {
     text-decoration:none;
 }
 
