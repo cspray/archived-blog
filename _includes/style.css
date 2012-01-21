@@ -206,6 +206,8 @@ code {
 .post-author, .post-date {
 	margin-left: 1.25em;
 	font-size: .8em;
+	text-decoration: none;
+	color: rgb(95, 95, 95);
 }
 
 .float-left {
