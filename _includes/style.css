@@ -125,6 +125,8 @@ code {
 #post-navigation li > a > div {
     padding: 5px;
     border: 2px solid rgba(149, 55, 63, .6);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
     margin-bottom: .5em;
 }
 
