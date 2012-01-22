@@ -10,7 +10,7 @@
 	            	                <p class="post-url">{{ post.title }}</p>
 	            	                <p class="post-author">By: <strong>{{ post.author }}</strong>
     	            	            <p class="post-date"><em>Dated {{ post.date | date_to_string}}</em></p>
-    	            	            <p class="post-wordcount">{{ page.content | number_of_words}} words</p>
+    	            	            <p class="post-wordcount">{{ post.content | number_of_words}} words</p>
     	            	        </div></a>
                     	    </li>
 		                    {% endfor %}
