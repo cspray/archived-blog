@@ -42,6 +42,7 @@ blockquote {
     margin-top: .5em;
     margin-bottom: .5em;
     margin-left: .25em;
+    width: 95%;
 }
 
 code {
