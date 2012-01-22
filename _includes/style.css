@@ -210,14 +210,14 @@ code {
 	color: rgb(95, 95, 95);
 }
 
-.post-link {
+.post-link:hover {
+    text-decoration: none;
+}
+
+.post-link > div {
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     -moz-border-radius: 10px;
-}
-
-.post-link:hover {
-    text-decoration: none;
 }
 
 .post-link:hover > div {
