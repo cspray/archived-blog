@@ -39,9 +39,7 @@ blockquote {
     border-right: 1px solid gray;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-    margin-top: .5em;
-    margin-bottom: .5em;
-    margin-left: .25em;
+    margin: .5em auto;
     width: 95%;
 }
 
