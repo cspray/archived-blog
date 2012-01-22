@@ -203,7 +203,7 @@ code {
 	font-size: 1.25em;
 }
 
-.post-author, .post-date {
+.post-author, .post-date, .post-wordcount {
 	margin-left: 1.25em;
 	font-size: .8em;
 	text-decoration: none;
