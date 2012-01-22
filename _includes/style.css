@@ -222,6 +222,7 @@ code {
 
 .post-link:hover > div {
     border: 2px solid rgba(149, 55, 63, .6);
+    box-shadow: 5px 5px 2px #888;
 }
 
 .post-link:hover .post-url {
