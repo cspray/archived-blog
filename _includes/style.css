@@ -148,7 +148,7 @@ code {
 #comment-disclaimer .comment-status-enabled {
     color: rgb(255, 255, 255);
     border-color: rgb(0, 255, 0);
-    background-color: rgba(0, 255, 0, .5);
+    background-color: rgb(0, 255, 0);
 }
 
 #comment-disclaimer .comment-status-disabled {
