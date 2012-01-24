@@ -1,4 +1,5 @@
                 	<div>
+                	    <h3>posts</h3>
 	                    <ul class="navigation-menu vertical-list">
 	                    {% if site.posts.size == 0 %}
 	                    	<li>There are no posts at this time.  Please check back later!</li>
@@ -6,7 +7,7 @@
 	    	                {% for post in site.posts %}
         	                <li>
         	                	<a href="{{ post.url }}"><div>
-	            	                <span class="post-url">{{ post.title }}</span>
+	            	                <span>{{ post.title }}</span>
     	            	        </div></a>
                     	    </li>
 		                    {% endfor %}
