@@ -102,12 +102,15 @@ code {
 
 #post-navigation li, #external-links li {
 	font-weight: 300;
-	text-align: left;
 }
 
 #post-navigation li > a > div {
     padding: 5px;
     margin-bottom: .5em;
+}
+
+#post-navigation > span {
+    display: block;
 }
 
 #external-links {
