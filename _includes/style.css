@@ -76,6 +76,7 @@ code {
 }
 
 #main-content {
+    float: left;
 	width: 75%;
 	padding: 5px;
 }
