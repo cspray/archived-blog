@@ -64,7 +64,7 @@ code {
 	clear: both;
 }
 
-#left-sidebar, #right-sidebar {
+#left-sidebar {
 	width: 20%;
 }
 
@@ -76,10 +76,8 @@ code {
 }
 
 #main-content {
-	margin: 0 auto;
-	width: 55%;
+	width: 75%;
 	padding: 5px;
-	float: none;
 }
 
 #main-content h2 {
