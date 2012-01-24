@@ -171,6 +171,7 @@ code {
 #author-portrait {
     display: block;
     margin: 0 auto;
+    margin-bottom: .5em;
 }
 
 .navigation-menu {

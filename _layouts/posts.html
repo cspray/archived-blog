@@ -20,7 +20,7 @@
 
             <div id="content-body">
                 <div id="left-sidebar" class="float-left">
-                    {{ content }}
+                    {% include post-navigation-posts.html %}
 				    <div>
     					<ul class="navigation-menu vertical-list">
    	    	    			<li>
@@ -39,8 +39,27 @@
                 </div>
 
                 <div id="main-content">
+                    {{ content }}
 
-                    {% include post-navigation-home.html %}
+	                {% if page.disqus_enabled == true %}
+	                <hr />
+	                <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_shortname = "{{ page.disqus_shortname}}";
+                        var disqus_identifier = "{{ page.disqus_identifier }}";
+                        var disqus_url = "{{ page.disqus_url }}";
+                        var disqus_title = "{{ page.title }}";
+
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+	                {% endif %}
 
                 </div>
 
