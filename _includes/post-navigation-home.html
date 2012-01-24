@@ -10,7 +10,7 @@
 	            	                <span class="post-author">By: <strong>{{ post.author }}</strong></span>
     	            	            <span class="post-date"><em>Dated {{ post.date | date_to_string}}</em></span>
     	            	            <span class="post-wordcount">{{ post.content | number_of_words}} words</span>
-    	            	            <span class="post-number">{{ forloop.index | plus:1 }}</span>
+    	            	            <span class="post-number">{{ forloop.index }}</span>
     	            	        </div></a>
                     	    </li>
                     	    {% endfor %}
