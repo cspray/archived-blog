@@ -64,7 +64,7 @@ code {
 	clear: both;
 }
 
-#left-sidebar {
+#left-sidebar, #right-sidebar {
 	width: 20%;
 }
 
