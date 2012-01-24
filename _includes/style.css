@@ -221,6 +221,7 @@ code {
     -moz-border-radius: 10px;
     width: 275px;
     height: 122px;
+    position: relative;
 }
 
 .post-link:hover > div {
@@ -229,6 +230,12 @@ code {
 
 .post-link:hover .post-url {
     text-decoration: underline;
+}
+
+.post-link .post-number {
+    position: absolute;
+    bottom: .25em;
+    right: .25em;
 }
 
 .float-left {
