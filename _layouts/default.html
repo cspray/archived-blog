@@ -16,39 +16,31 @@
 	                <h1><a href="http://cspray.github.com/">ramblings of a PHP enthusiast</a></h1>
     	            <span class="byline">web-development articles written by Charles Sprayberry</span>
     	    	</div>
-    	    	<div class="float-right" style="width:397px;">
-					<ul class="navigation-menu horizontal-list">
-   		    			<li>
-   		    			    <a href="http://github.com/cspray/SprayFire">
-       		    				<img src="/img/sprayfire_logo_bar.png" width="155" height="58" alt="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." title="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." />
-       		    			</a>
-   	    				</li>
-
-   	    				<li>
-   	    				    <a href="http://stackexchange.com/users/387580">
-							    <img src="http://stackexchange.com/users/flair/387580.png?theme=clean" width="208" height="58" alt="Charles Sprayberry's profile on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="Profile for Charles Sprayberry on Stack Exchange, a network of free, community-driven Q&amp;A sites">
-							</a>
-						</li>
-   		    		</ul>
-    	    	</div>
             </div>
 
             <div id="content-body">
                 <div id="left-sidebar" class="float-left">
-					{% include post-navigation.html %}
-                </div>
+                    {{ content }}
+				    <div class="float-right" style="width:397px;">
+    					<ul class="navigation-menu vertical-list">
+   	    	    			<li>
+   		        			    <a href="http://github.com/cspray/SprayFire">
+       		        				<img src="/img/sprayfire_logo_bar.png" width="155" height="58" alt="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." title="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." />
+       		        			</a>
+   	    			    	</li>
 
-                <div id="right-sidebar" class="float-right">
-                    {% if page.title == 'home' %}
-					    {% include external-links.html %}
-					    {% include good-reads.html %}
-					{% endif %}
-					{% include comment-disclaimer.html %}
+   	        				<li>
+   	        				    <a href="http://stackexchange.com/users/387580">
+			    				    <img src="http://stackexchange.com/users/flair/387580.png?theme=clean" width="208" height="58" alt="Charles Sprayberry's profile on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="Profile for Charles Sprayberry on Stack Exchange, a network of free, community-driven Q&amp;A sites">
+				    			</a>
+					    	</li>
+       		    		</ul>
+                    </div>
                 </div>
 
                 <div id="main-content">
 
-	                {{ content }}
+                    {% include post-navigation.html %}
 
 	                {% if page.disqus_enabled == true %}
 	                <hr />

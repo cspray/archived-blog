@@ -206,6 +206,7 @@ code {
     border: 2px solid rgb(255, 255, 255);
     border-radius: 10px;
     -moz-border-radius: 10px;
+    width: 275px;
 }
 
 .post-link:hover > div {
