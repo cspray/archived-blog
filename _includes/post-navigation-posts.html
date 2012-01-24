@@ -7,9 +7,6 @@
         	                <li>
         	                	<a class="post-link" href="{{ post.url }}"><div>
 	            	                <span class="post-url">{{ post.title }}</span>
-	            	                <span class="post-author">By: <strong>{{ post.author }}</strong></span>
-    	            	            <span class="post-date"><em>Dated {{ post.date | date_to_string}}</em></span>
-    	            	            <span class="post-wordcount">{{ post.content | number_of_words}} words</span>
     	            	        </div></a>
                     	    </li>
 		                    {% endfor %}
