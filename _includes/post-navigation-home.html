@@ -14,7 +14,8 @@
     	            	            <span class="post-number">{{ count }}</span>
     	            	        </div></a>
                     	    </li>
-                            {% count++ %}
+                    	    {% assign newcount = count + 1 %}
+                            {% assign count = newcount %}
                     	    {% endfor %}
 		                {% endif %}
 	                	</ul>
