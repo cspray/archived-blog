@@ -73,26 +73,32 @@ code {
     text-align: justify;
 }
 
-#main-content {
+#main-content-home {
     float: left;
 	width: 75%;
 	padding: 5px;
 }
 
-#main-content h2 {
+#main-content-home {
+    float: none;
+    width: 55%;
+    margin: 0 auto;
+}
+
+#main-content-posts h2 {
 	margin-bottom: .75em;
 	font-size: 1.95em;
 	font-weight: 300;
 }
 
-#main-content h3 {
+#main-content-posts h3 {
     border-bottom: 3px solid gray;
     font-size: 1.5em;
     font-weight: 300;
     margin-bottom: .5em;
 }
 
-#main-content p {
+#main-content-posts p {
 	margin: 0 auto;
 	width: 95%;
 	margin-bottom: .75em;
@@ -100,7 +106,7 @@ code {
 	text-align: justify;
 }
 
-#main-content pre, #main-content ul {
+#main-content-posts pre, #main-content-posts ul {
     margin: .5em auto;
     width: 95%;
 }
