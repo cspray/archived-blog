@@ -234,8 +234,8 @@ code {
 
 .post-link .post-number {
     position: absolute;
-    bottom: .25em;
-    right: .25em;
+    bottom: .5em;
+    right: .5em;
 }
 
 .float-left {
