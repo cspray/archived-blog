@@ -68,7 +68,7 @@ code {
 	width: 20%;
 }
 
-#left-sidebar p {
+#left-sidebar p, #right-sidebar p {
     margin-bottom: .5em;
     text-align: justify;
 }
