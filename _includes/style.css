@@ -68,6 +68,11 @@ code {
 	width: 20%;
 }
 
+#left-sidebar p {
+    margin-bottom: .5em;
+    text-align: justify;
+}
+
 #main-content {
     float: left;
 	width: 75%;
@@ -166,7 +171,6 @@ code {
 #author-portrait {
     display: block;
     margin: 0 auto;
-    width: 160px;
 }
 
 .navigation-menu {
