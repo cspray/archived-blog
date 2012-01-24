@@ -3,7 +3,7 @@
 	                    {% if site.posts.size == 0 %}
 	                    	<li>There are no posts at this time.  Please check back later!</li>
 	                    {% else %}
-	                        {% count = 1 %}
+	                        {% assign count = 1 %}
 	    	                {% for post in site.posts %}
         	                <li>
         	                	<a class="post-link" href="{{ post.url }}"><div>
