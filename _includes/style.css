@@ -163,6 +163,11 @@ code {
     margin-top: 1em;
 }
 
+#author-portrait {
+    display: block;
+    margin: 0 auto;
+}
+
 .navigation-menu {
 	list-style: none;
 }
