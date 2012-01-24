@@ -203,7 +203,6 @@ code {
     border-radius: 10px;
     -moz-border-radius: 10px;
     width: 275px;
-    height: 200px;
 }
 
 .post-link:hover > div {
