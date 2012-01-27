@@ -73,6 +73,10 @@ code {
     margin-bottom: .5em;
 }
 
+#left-sidebar {
+    min-width: 215px;
+}
+
 #left-sidebar h3 {
     font-size: 1.45em;
     margin-bottom: .5em;
