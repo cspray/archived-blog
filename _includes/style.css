@@ -66,6 +66,7 @@ code {
 
 #left-sidebar, #right-sidebar {
 	width: 20%;
+	overflow: auto;
 }
 
 #left-sidebar p, #right-sidebar p {
