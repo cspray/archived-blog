@@ -73,10 +73,6 @@ code {
     margin-bottom: .5em;
 }
 
-#left-sidebar {
-    min-width: 215px;
-}
-
 #left-sidebar h3 {
     font-size: 1.45em;
     margin-bottom: .5em;
@@ -227,10 +223,9 @@ code {
 
 .post-link > div {
     border: 2px solid rgb(149, 55, 63);
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    width: 275px;
-    height: 122px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    padding: 8px;
     position: relative;
 }
 
