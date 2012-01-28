@@ -227,6 +227,8 @@ code {
     -moz-border-radius: 2px;
     padding: 8px;
     position: relative;
+    width: 275px;
+    height: 122px;
 }
 
 .post-link:hover > div {
