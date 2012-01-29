@@ -27,7 +27,7 @@ instead of just creating them.  Maybe you just flat-out don't see the benefit.  
 you how <strong>I've</strong> benefited and, hopefully, convince you that you can reap these same rewards
 by asking for things instead of looking for them.</p>
 
-<h3>helps in the battle against global state</h3>
+<h3 id="helps-global-state">helps in the battle against global state</h3>
 
 <p><a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad">Global variables are bad</a>.  If you are
 of the belief that global variables <em>aren't</em> bad, well...I disagree with you.  Global state can
@@ -36,7 +36,11 @@ is in the global state there better be a <em>really</em> good reason; most reaso
 using dependency injection we are plainly stating what we need to use and then use those dependencies
 within the scope of the class; not the scope of all the things.</p>
 
-<h3>it helps your design</h3>
+<blockquote>Interested in learning more about how DI can win the good fight against global state?
+Check out a follow-up to this article, <a href="/2012/01/29/DI-and-global-state.html">DI and global state</a>,
+for a more thorough explanation and code samples.</blockquote>
+
+<h3 id="helps-your-design">it helps your design</h3>
 
 <p>If dependency injection doesn't make you really think about and evaluate your code you aren't doing
 it right.  Using DI isn't just about moving objects created in your constructor to objects passed as
@@ -52,7 +56,7 @@ the putrid odor wafting about your IDE.  Find the source of the stench and remov
 this stench is akin to wallowing in garbage all day and believing that a swipe of deodorant is sufficient.
 In reality you need a shower and you actually smell quite bad.</p>
 
-<h3>especially single responsibility</h3>
+<h3 id="helps-srp">especially single responsibility</h3>
 
 <p>I've found that DI really helps out with a core tenant of good object-oriented design,
 the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility principle</a>.
