@@ -11,5 +11,35 @@
        		        				<img src="/img/sprayfire_logo_bar.png" width="155" height="58" alt="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." title="SprayFire PHP framework developed and created by Charles Sprayberry.  Logo drawn by Dyana Stewart." />
        		        			</a>
    	    			    	</li>
+   	    			    	<li>
+   	    			    	    <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+                                <script>
+                                new TWTR.Widget({
+                                  version: 2,
+                                  type: 'profile',
+                                  rpp: 3,
+                                  interval: 30000,
+                                  width: 200,
+                                  height: 300,
+                                  theme: {
+                                    shell: {
+                                        background: '#ffffff',
+                                        color: '#5f5f5f'
+                                    },
+                                    tweets: {
+                                      background: '#ffffff',
+                                      color: '#5f5f5f',
+                                      links: '#95373f'
+                                    }
+                                  },
+                                  features: {
+                                    scrollbar: false,
+                                    loop: false,
+                                    live: true,
+                                    behavior: 'all'
+                                  }
+                                }).render().setUser('charlesspray').start();
+                            </script>
+   	    			    	</li>
        		    		</ul>
                     </div>
