@@ -58,7 +58,9 @@
                 url: url,
                 data: ajaxData,
                 scriptCharset: "utf-8",
-                crossDomain: true
+                crossDomain: true,
+                error: errorCallback,
+                success: successCallback
             };
 
             $.ajax(ajaxOptions);
