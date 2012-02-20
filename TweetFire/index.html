@@ -17,10 +17,12 @@ and open the template in the editor.
 
             }
         </style>
-        <script src="http://platform.twitter.com/anywhere.js?id=VCSSoj0kLvcgoEBSjd5Qw&amp;v=1" type="text/javascript"></script>
+        <script src="http://platform.twitter.com/anywhere.js?id=VCSSoj0kLvcgoEBSjd5Qw&v=1" type="text/javascript"></script>
         <script type="text/javascript" src="jquery-dev-1.7.js"></script>
         <script type="text/javascript" src="TweetFire.js"></script>
         <script>
+            twttr.anywhere.config({callbackURL: "http://cspray.github.com/blank.html"});
+
             var settings = $().TweetFire({
                 screen_name: "charlesspray"
             });
@@ -42,7 +44,8 @@ and open the template in the editor.
                 var panel = $("#tweetfire .tweetfire-tweets");
                 panel.html(html);
                 twttr.anywhere(function(T) {
-                    T("#tweetfire").linkifyUsers();
+                    T("#tweetfire .tweetfire-tweets").linkifyUsers();
+
                 });
             });
         </script>
@@ -52,14 +55,12 @@ and open the template in the editor.
             <div class="tweetfire-tweets">
 
             </div>
-            <div id="tweetfire-follow">
+            <div class="tweetfire-follow">
 
             </div>
             <script type="text/javascript">
-                $().ready(function() {
-                    twttr.anywhere(function(T) {
-                        T("#tweetfire-tweets .tweetfire-follow").followButton('charlesspray');
-                    });
+                twttr.anywhere(function(T) {
+                    T("#tweetfire .tweetfire-follow").followButton("charlesspray");
                 });
             </script>
         </div>
