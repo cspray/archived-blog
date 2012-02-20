@@ -57,6 +57,7 @@
             var ajaxOptions = {
                 url: url,
                 data: ajaxData,
+                scriptCharset: "utf-8",
                 dataType: "jsonp",
                 type: "GET",
                 error: errorCallback,
