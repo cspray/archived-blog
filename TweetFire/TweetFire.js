@@ -44,7 +44,7 @@
             return settings = $.extend(settings, options);
         },
         timeline: function() {
-            var url = baseApiUrl + "statuses/user_timeline/";
+            var url = baseApiUrl + "statuses/user_timeline.json";
             var errorCallback = function(jqHr, status, error) {
                 console.log(status);
             };
@@ -57,6 +57,8 @@
             var ajaxOptions = {
                 url: url,
                 data: ajaxData,
+                dataType: "jsonp",
+                contentType: "application/json",
                 scriptCharset: "utf-8",
                 crossDomain: true,
                 error: errorCallback,
