@@ -17,7 +17,7 @@ and open the template in the editor.
 
             }
         </style>
-        <script src="http://platform.twitter.com/anywhere.js?id=VCSSoj0kLvcgoEBSjd5Qw&v=1" type="text/javascript"></script>
+        <script src="http://platform.twitter.com/anywhere.js?id=VCSSoj0kLvcgoEBSjd5Qw&amp;v=1" type="text/javascript"></script>
         <script type="text/javascript" src="jquery-dev-1.7.js"></script>
         <script type="text/javascript" src="TweetFire.js"></script>
         <script>
@@ -56,8 +56,10 @@ and open the template in the editor.
 
             </div>
             <script type="text/javascript">
-                twttr.anywhere(function(T) {
-                    T("#tweetfire-tweets .tweetfire-follow").followButton('charlesspray');
+                $().ready(function() {
+                    twttr.anywhere(function(T) {
+                        T("#tweetfire-tweets .tweetfire-follow").followButton('charlesspray');
+                    });
                 });
             </script>
         </div>
