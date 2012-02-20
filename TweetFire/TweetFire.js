@@ -44,7 +44,7 @@
             return settings = $.extend(settings, options);
         },
         timeline: function() {
-            var url = baseApiUrl + "statuses/user_timeline";
+            var url = baseApiUrl + "statuses/user_timeline/";
             var errorCallback = function(jqHr, status, error) {
                 console.log(status);
             };
