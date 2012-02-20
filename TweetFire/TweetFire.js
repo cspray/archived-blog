@@ -12,7 +12,8 @@
         user_id: null,
         since_id: null,
         count: 5,
-        trim_user: true
+        trim_user: true,
+        include_rts: true
     };
 
     var baseApiUrl = "http://api.twitter.com/1/";
@@ -43,13 +44,14 @@
             }
             return settings = $.extend(settings, options);
         },
-        timeline: function() {
+        timeline: function(callback) {
+            if (!$.isFunction(callback)) {
+                throw "A function for success callback must be passed as the second parameter when retrieving a timeline."
+            }
+
             var url = baseApiUrl + "statuses/user_timeline.json";
             var errorCallback = function(jqHr, status, error) {
-                console.log(status);
-            };
-            var successCallback = function(data, status, jqHr) {
-                console.log(data);
+                console.log(error);
             };
 
             var ajaxData = getAjaxData();
@@ -62,18 +64,23 @@
                 scriptCharset: "utf-8",
                 crossDomain: true,
                 error: errorCallback,
-                success: successCallback
+                success: callback
             };
 
             $.ajax(ajaxOptions);
-            return ajaxOptions;
         }
     };
 
     $.fn.TweetFire = function(action) {
 
         if (actions[action] && action != "initialize") {
-            return actions[action].apply(this, {});
+            var numArgs = arguments.length;
+            var callback = [];
+            callback[0] = null;
+            if (numArgs == 2) {
+                callback[0] = arguments[1];
+            }
+            actions[action].apply(this, callback);
         }
 
         if (typeof action === "object" || !action) {

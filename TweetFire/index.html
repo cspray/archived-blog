@@ -7,17 +7,59 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            .tweetfire-tweet {
+                margin: 0 auto;
+                border: 2px solid black;
+                margin-bottom: 1em;
+                padding: 5px;
+                width: 75%;
+
+            }
+        </style>
+        <script src="http://platform.twitter.com/anywhere.js?id=VCSSoj0kLvcgoEBSjd5Qw&v=1" type="text/javascript"></script>
         <script type="text/javascript" src="jquery-dev-1.7.js"></script>
         <script type="text/javascript" src="TweetFire.js"></script>
         <script>
             var settings = $().TweetFire({
                 screen_name: "charlesspray"
             });
-            var timeline = $().TweetFire('timeline');
-            console.log(timeline);
+            $().TweetFire('timeline', function(data) {
+                var html = "";
+                $.each(data, function(index, value) {
+                    var tweet = {};
+                    tweet.id = value.id_str;
+                    tweet.date = value.created_at;
+                    tweet.retweetCount = value.retweet_count;
+                    tweet.retweeted = value.retweeted;
+                    tweet.favorited = value.favorited;
+                    tweet.status = value.text;
+                    console.log(tweet);
+                    html = html + "<div class=\"tweetfire-tweet\">";
+                    html = html + "<div class=\"tweetfire-tweet-status\">" + tweet.status + "</div>";
+                    html = html + "</div>";
+                });
+                var panel = $("#tweetfire .tweetfire-tweets");
+                panel.html(html);
+                twttr.anywhere(function(T) {
+                    T("#tweetfire").linkifyUsers();
+                });
+            });
         </script>
     </head>
     <body>
+        <div id="tweetfire">
+            <div class="tweetfire-tweets">
 
+            </div>
+            <div id="tweetfire-follow">
+
+            </div>
+            <script type="text/javascript">
+                twttr.anywhere(function(T) {
+                    T("#tweetfire-tweets .tweetfire-follow").followButton('charlesspray');
+                });
+            </script>
+        </div>
     </body>
 </html>
