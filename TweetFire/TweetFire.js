@@ -60,7 +60,8 @@
                 dataType: "jsonp",
                 type: "GET",
                 error: errorCallback,
-                success: successCallback
+                success: successCallback,
+                crossDomain: true
             };
 
             $.ajax(ajaxOptions);
