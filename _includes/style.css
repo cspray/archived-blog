@@ -186,6 +186,10 @@ code {
     margin-bottom: .5em;
 }
 
+#dsq-global-toolbar {
+    height: 30px;
+}
+
 .navigation-menu {
 	list-style: none;
 }
