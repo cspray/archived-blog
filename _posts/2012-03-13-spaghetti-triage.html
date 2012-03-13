@@ -25,7 +25,7 @@ In this blog post I will discuss why I would choose to separate the view from th
 and give an example in code on how one might begin to separate the templating of HTML in a spaghettified
 PHP application.</p>
 
-<h3>Why choose separating the view first?</h3>
+<h3>why separate the view first?</h3>
 
 <p>That's a really good question.  After all, when compared to security vulnerabilities that effect the
 validity of your data separating the view seems insignificant in comparison.  However, we must keep
@@ -44,7 +44,7 @@ is pretty important.  After all, <a href="http://stackoverflow.com/questions/417
 can become invalid if you escape too much</a> and attempting to format an already formatted value is
 a waste of resources.  Basically, security is gonna be easier to implement in a cleanly separated system.</p>
 
-<h3>How would you seperate the view?</h3>
+<h3>how would you separate the view?</h3>
 
 <p>We have to understand that the answer here is not to go and integrate some advanced
 templating system, like <a href="http://www.smarty.net/">Smarty</a> or <a href="http://twig.sensiolabs.org/">Twig</a>.
