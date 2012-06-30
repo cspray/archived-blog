@@ -17,6 +17,10 @@ h1 {
 	font-weight: 200;
 }
 
+ul {
+    list-style-position: inside;
+}
+
 a {
 	color: rgb(149, 55, 63);
 	text-decoration: none;
