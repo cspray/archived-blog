@@ -1,0 +1,213 @@
+---
+layout: posts
+title: SprayFire services
+description: Talking about some thoughts and ideas on how SprayFire takes care of dependency management
+author: Charles Sprayberry
+published: true
+
+disqus_enabled: true
+disqus_shortname: ramblingsofaphpenthusiast
+disqus_identifier: /2013/02/08-sprayfire-services.md
+disqus_url: http://cspray.github.com/2013/02/08/sprayfire-services
+---
+
+## SprayFire services
+
+I've been hard at work lately getting things ready for the [v0.1.0a release](https://github.com/cspray/SprayFire/wiki/Roadmap) of SprayFire. One of the modules provided in the initial release is [`SprayFire\Service`](https://github.com/cspray/SprayFire/tree/master/libs/SprayFire/Service) that takes care of providing dependencies to other modules. Dependency management is a highly controversial topic in the PHP community and can be implemented in a [lot](https://github.com/fabpot/Pimple) [of](https://github.com/symfony/symfony/tree/master/src/Symfony/Component/DependencyInjection) different ways. Here we talk about SprayFire's strategy for handling this problem, why we chose it and some code examples of how to work with the module. As always, comments are welcome, however, if you're gonna blast the implementation then I would appreciate that you also detail how you would resolve the negatives.
+
+### module goals
+
+- Not require excessive Reflection
+
+  Somewhere along the lines if you're creating objects dynamically in PHP you'll need to use Reflection. It isn't ever the only solution but often times it is the one that makes the most sense. Unfortunately, Reflection is slow and resource intensive. If we *absolutely have to* use Reflection, fine but we really should take steps to avoid it.
+- Be simple to use
+
+  While we strive for all the modules to be simple some are more complex or have more dependencies than others. If you take a look at the [`SprayFire\Http\Routing`](https://github.com/cspray/SprayFire/tree/master/libs/SprayFire/Http/Routing) module it is far more complex than the Service module. Figuring out what resource corresponds to what route has a lot of parts and needs a lot of pieces to work together. Dependency Management should be very simple; store services and give me access to them when I need them.
+- Don't just blindly inject a Container
+
+  We don't want to just give a Container to anything that might have a dependency. We want the services to be explictly requested and limit the amount of places a Container may be passed.
+
+### module overview
+
+There are two interfaces provided by the API that are intended to work together, [`Service\Container`](https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/Container.php) and [`Service\Consumer`](https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/Consumer.php). Container implementations are responsible for storing and creating services (objects) and Consumer implementations request and receive services. You can probably guess what the Container implementation does, although we'll get to it shortly, so we'll take a look at the Consumer first.
+
+### consuming services
+
+The `Service\Consumer` interface states that the implementation requires services from the Container and provides a mechanism for associating a requested service to a given, object-specific key. Consuming services is quite simple.
+
+```php
+<?php
+
+class Foo implements \SprayFire\Service\Consumer {
+
+    protected $services = [
+        'YourKey' => '\Namespaced\Service\Name',
+        'OtherKey' => 'Dot.Separated.Works.Too'
+    ];
+
+    protected $storedServices = [];
+
+    public function getRequestedServices() {
+        // If you need to add services to this do it during constructor
+        return $this->services;
+    }
+
+    public function giveService($key, $Service) {
+        $this->storedServices[$key] = $Service;
+    }
+
+}
+
+?>
+```
+
+You can add some things to this to make [working with the stored services a little easier](https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/FireService/Consumer.php) but this, in a nutshell, is what a consumer implementation would look like. Very simple. You'll notice, because you're smart and observant, that the services are added *after* object construction. This presents some drawbacks that we'll discuss later. But, for now that's the idea behind consuming services.
+
+Now, let's take a look at how you would add services to the Container for consumption.
+
+### containing services
+
+Services are expected to be added to the `Service\Container` during framework, or app, intialization. Typically your app will include some bootstrap, in the below examples we'll assume that your app name is, well, `YourApp`.
+
+```php
+<?php
+
+namespace YourApp;
+
+// Parent implements SprayFire\Bootstrap\Bootstrapper and provides access to the
+// Container implementation in $Container property. By default the framework will
+// instantiate and invoke runBootstrap() if routed controller is in the
+// YourApp namespace.
+class Bootstrap extends \SprayFire\Bootstrap\FireBootstrap\Pluggable {
+
+    public function runBootstrap() {
+        // Adding a service to the container as a simple string with no dependencies
+        $this->Container->addService('\YourApp\Foo\DooHickey');
+
+        // You can also pass it in as dot separated
+        // $this->Container->addService('YourApp.Foo.DooHickey') is equivalent
+
+        // Adding a service to the container as an already created object
+        $DooHickey = new \YourApp\Foo\BetterDooHickey();
+        $this->Container->addService($DooHickey);
+
+        // You could retrive this with:
+        // $this->Container->getService('\YourApp\Foo\BetterDooHickey');
+        // OR
+        // $this->Container->getService('YourApp.Foo.BetterDooHickey');
+
+        // Adding a service with dependencies
+        // Return an array with dependencies needed for the given service
+        $parameters = function() {
+            return [new \YourApp\Foo\ThingaMaBob()];
+        };
+        $this->Container->addService('YourApp.Foo.DooHickeyBuilder', $parameters);
+
+        // Adding a service to be created by a factory
+        // $DooHickeyFactory should implement \SprayFire\Factory\Factory
+        $DooHickeyFactory = new \YourApp\Foo\DooHickeyFactory();
+        $this->Container->registerFactory('dooHickeyFactory', $DooHickeyFactory);
+        $this->Container->addService('FooHickey', null, 'dooHickeyFactory');
+        $this->Container->addService('BarHickey', null, 'dooHcikeyFactory');
+
+        // When calling $this->Container->getService('FooHickey') the service name set
+        // will be passed to the Factory::makeObject() registered. If the factory is
+        // not registered when *getting* the service an exception is thrown.
+    }
+
+}
+
+?>
+```
+
+Those are the expected use cases for adding services to the Container. You can pass whatever type of callback you would like into the second parameter of `Container::addService()` as long as it is callable and it returns an array of dependencies that should be injected into the service at construction. The index of the array should match the index of the expected constructor argument.
+
+In the default provided Container all objects added as a string class name are lazy loaded. That is the function getting their dependencies and the instantiation of the service is not invoked until the service is requested. In this way you can easily add many services to the Container but be sure that only the ones that are needed are instantiated.
+
+### hey, wait a minute! what about that Consumer thing getting services?
+
+I'm glad you remembered that. In the first release version SprayFire will provide a [`ConsumerFactory`](https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/FireService/ConsumerFactory.php) that can be extended to ensure the appropriate services are added...if you create your object via Factory. However, I really don't like the way that aspect of the design is working and part of v0.2.0a will be [refactoring this component into a `ConsumerBuilder`](https://github.com/cspray/SprayFire/issues/120). Below is how I think the object will work in my head.
+
+```php
+<?php
+
+class ConsumerBuilder {
+
+    protected $Container;
+
+    public function __construct(\SprayFire\Service\Container $Container) {
+        $this->Container = $Container;
+    }
+
+    public function build(\SprayFire\Service\Consumer $Consumer) {
+        foreach ($Consumer->getRequestedServices() as $key => $serviceName) {
+            $Consumer->giveService($key, $this->Container->getService($serviceName));
+        }
+    }
+
+}
+
+// Now you can do all kinds of things with this instead of being forced to
+// extend an abstract Factory. You can...
+
+// ...inject it into a Factory instead!
+$Builder = new \SprayFire\Service\ConsumerBuilder($Container);
+$Factory = new \YourApp\Foo\FooFactory($Builder);
+
+// ...use it in your Container parameter callbacks for services that
+// are themselves Consumers.
+$Builder = new \SprayFire\Service\ConsumerBuilder($Container);
+$callback = function() use($Builder) {
+    $Service = new \YourApp\Foo\ServiceConsumer();
+    $Builder->build($Service);
+    return [$Service];
+};
+$Container->addService('YourApp.Foo.ThingaMaBob', $callback);
+
+// ...you can even inject it into Consumers and let them build their own service
+// during construction. This approach you still don't give access to the entire
+// Container, just the ability to get specific services from it.
+class ConsumerImplementation implements \SprayFire\Service\Consumer {
+
+    protected $storedServices = [];
+
+    public function __construct(\SprayFire\Service\ConsumerBuilder $Builder) {
+        $Builder->build($this);
+    }
+
+    public function getRequestedServices() {
+        // return your array of services
+        return [
+            'Paths' => 'SprayFire.FileSys.FireFileSys.Paths'
+        ];
+    }
+
+    public function giveService($key, $Service) {
+        $this->storedServices[$key] = $Service;
+    }
+
+}
+
+?>
+```
+
+### the pros and the cons
+
+So, that is the approach we're taking with SprayFire right now. All in all it is pretty simple and accomplishes the goals we set out with when thinking about how the module will work. However, there are some pros and cons to the approach...
+
+#### pros
+
+- Although we may use Reflection to instantiate services it is easy to setup so that you don't have to hit the Reflection cost.
+- Service consumers explicitly request services instead of just taking the container directly
+- Service consumption is easy to test, just call `Consumer::giveService()` with the key the code under test is expecting and an implementation of the service expected, real or mock.
+- Framework implementations do not have to expensively parse the constructor parameters expected from application code when the framework is instantiating application objects.
+
+#### cons
+
+- It isn't truly dependency injection, you can create a Consumer without the appropriate services and no errors will occur until the Consumer is processed for services requested or the service is attempted to be used and it is not there.
+- You must create the Consumer through a Factory or Builder or otherwise process giving the services to the Consumer.
+- Services depended on are less visible, you must dive into the code and look at property values or look at the return value of `Consumer::getRequestedServices()`
+
+### wrapping it all up
+
+Dependency management is a finicky beast in any application. There's a lot of different ways that it can be done and each way has pros and cons. SprayFire takes care of dependency management in some similar, and different, ways compared to other frameworks. I feel that the pros achieved slightly outweight the cons but feel like it could be improved upon. What do you think of the take? What would you change? What kind of dependency management do you use for your own projects?
