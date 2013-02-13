@@ -39,7 +39,7 @@ disqus_url: http://cspray.github.com/2013/02/12/sprayfire-services
 
 <p>The `<code>Service\Consumer</code> interface states that the implementation requires services from the Container and provides a mechanism for associating a requested service to a given, object-specific key. Consuming services is quite simple.</p>
 
-```php
+{% highlight php %}
 <?php
 
 class Foo implements \SprayFire\Service\Consumer {
@@ -63,7 +63,7 @@ class Foo implements \SprayFire\Service\Consumer {
 }
 
 ?>
-```
+{% endhighlight %}
 
 <p>You can add some things to this to make <a href="https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/FireService/Consumer.php">working with the stored services a little easier</a> but this, in a nutshell, is what a consumer implementation would look like. Very simple. You'll notice, because you're smart and observant, that the services are added <i>after</i> object construction. This presents some drawbacks that we'll discuss later. But, for now that's the idea behind consuming services.</p>
 
@@ -73,7 +73,7 @@ class Foo implements \SprayFire\Service\Consumer {
 
 <p>Services are expected to be added to the <code>Service\Container</code> during framework, or app, intialization. Typically your app will include some bootstrap, in the below examples we'll assume that your app name is, well, <code>YourApp</code>.</p>
 
-```php
+{% highlight php %}
 <?php
 
 namespace YourApp;
@@ -122,7 +122,7 @@ class Bootstrap extends \SprayFire\Bootstrap\FireBootstrap\Pluggable {
 }
 
 ?>
-```
+{% endhighlight %}
 
 <p>Those are the expected use cases for adding services to the Container. You can pass whatever type of callback you would like into the second parameter of <code>Container::addService()</code> as long as it is callable and it returns an array of dependencies that should be injected into the service at construction. The index of the array should match the index of the expected constructor argument.</p>
 
@@ -132,7 +132,7 @@ class Bootstrap extends \SprayFire\Bootstrap\FireBootstrap\Pluggable {
 
 <p>I'm glad you remembered that. In the first release version SprayFire will provide a <a href="https://github.com/cspray/SprayFire/blob/master/libs/SprayFire/Service/FireService/ConsumerFactory.php"><code>`ConsumerFactory</code></a> that can be extended to ensure the appropriate services are added...if you create your object via Factory. However, I really don't like the way that aspect of the design is working and part of v0.2.0a will be <a href="https://github.com/cspray/SprayFire/issues/120">refactoring this component into a <code>ConsumerBuilder</code></a>. Below is how I think the object will work in my head.</p>
 
-```php
+{% highlight php %}
 <?php
 
 class ConsumerBuilder {
@@ -193,7 +193,7 @@ class ConsumerImplementation implements \SprayFire\Service\Consumer {
 }
 
 ?>
-```
+{% endhighlight %}
 
 <h3>the pros and the cons</h3>
 
