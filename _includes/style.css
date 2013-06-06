@@ -274,9 +274,9 @@ code {
 }
 
 .green {
-    color: rgba(0, 200, 0, .5);
+    color: rgba(0, 200, 0, .8);
 }
 
 .red {
-    color: rgba(200, 0, 0, .5);
+    color: rgba(200, 0, 0, .8);
 }
