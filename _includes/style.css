@@ -272,3 +272,11 @@ code {
     display: block;
     margin: 0 auto;
 }
+
+.green {
+    color: rgba(0, 200, 0, .5);
+}
+
+.red {
+    color: rgba(200, 0, 0, .5);
+}
