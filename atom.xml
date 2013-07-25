@@ -8,7 +8,7 @@ layout: nil
  <link href="http://cspray.github.io/atom.xml" rel="self"/>
  <link href="http://cspray.github.io/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://cspray.github.io</id>
+ <id>http://cspray.github.io/</id>
  <author>
    <name>Charles Sprayberry</name>
  </author>
