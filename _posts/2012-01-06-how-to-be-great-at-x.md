@@ -10,9 +10,8 @@ disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/06/how-to-be-great-at-x
 disqus_url: http://cspray.github.com/2012/01/06/how-to-be-great-at-x.html
 disqus_title: how to be great at $x
+category: programming
 ---
-
-<h2>how to be great at $x</h2>
 
 <p>I was sitting in the <a href="http://chat.stackexchange.com/rooms/1240/graphic-design-corner">Graphic Design Corner</a> chat room over at <a href="http://chat.stackexchange.com/">chat.stackexchange.com</a>
 with Dyana, my fiancé, last night where we talked with a professional graphic designer.  He said something

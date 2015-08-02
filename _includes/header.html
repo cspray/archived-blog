@@ -1,17 +1,3 @@
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Charles Sprayberry" />
-    <meta name="description" content="{{ page.description }}" />
-    <title>{{ page.title }} -- ramblings of a PHP enthusiast</title>
-    <link href="/all.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-28863236-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-</head>
+<header>
+  <h1 class="soft-margin-left"><a href="/">blog.cspray.net</a>{% if page.category%}<span class="text-muted">::{{page.category}}</span>{% endif %}</h1>
+</header>

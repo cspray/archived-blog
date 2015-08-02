@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#">
+
+  {% include head.html %}
+
+  <body>
+
     {% include header.html %}
-    <body>
 
-        <div id="content-container">
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-7">
+          {{content}}
+        </section>
 
-            <div id="content-header">
-            	<div class="float-left">
-	                <h1><a href="/">ramblings of a PHP enthusiast</a></h1>
-    	            <span class="byline">web-development articles written by Charles Sprayberry</span>
-    	    	</div>
+        <aside class="col-md-5">
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          {% for category in site.categories %}
+            <div>
+              {% capture cat_name %}{{category | category_name}}{% endcapture %}
+              <h4>{{cat_name}} <span class="badge">{{category | category_count}}</span></h4>
+              {% category_post_list cat_name %}
             </div>
+          {% endfor %}
+        </aside>
+      </div>
+    </main>
 
-            <div id="content-body">
-                <div id="left-sidebar" class="float-left">
-                    {{ content }}
-				    {% include badges.html %}
-                </div>
-
-                <div id="main-content-home">
-
-                    {% include post-navigation-home.html %}
-
-                </div>
-
-            </div>
-
-        </div>
-    </body>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28863236-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+  </body>
 </html>

@@ -1,0 +1,8 @@
+<div class="post-excerpt">
+  <h2><a href="{{include.post.url}}">{{include.post.title}}</a></h2>
+  <p class="text-muted">
+  By {{include.post.author}} <span title="{{post.date | date_to_long_string}}">{{include.post.date | timeago}}</span><br />
+    Category: <a href="/{{include.post.category}}">{{include.post.category}}</a>
+  </p>
+  <p>{{include.post.excerpt}}</p>
+</div>

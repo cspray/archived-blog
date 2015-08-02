@@ -9,22 +9,16 @@ disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2011/12/31/writing-better-commits-with-github
 disqus_url: http://cspray.github.com/2011/12/31/writing-better-commits-with-github.html
+category: programming
+references_sprayfire: true
+is_stale: true
 ---
 
-<h2>writing better commits with github</h2>
-
-<blockquote>
-Wait, you don't use <a href="http://www.github.com/">github</a>?  What, do you live under
-a rock or something?  Seriously, check out this great social-coding site!  Offers you a place to store,
-share and track your source code using <a href="http://git-scm.com/">git</a>!
-</blockquote>
-
-<p>As the development of <a href="http://www.github.com/cspray/SprayFire/">SprayFire</a> progresses
-I'm constantly evaluating what I'm doing, how I'm doing it and what tools I'm using.  Lately I've been
-thinking about the way I use <strong>git</strong>, my version control software of choice.  Looking
-through some of the commits for SprayFire I can tell that my commit strategy needs some work.  Commit
-messages are sometimes lengthy or don't really convey what the commit is doing.  What are some things
-that I can do to improve my commits and make for a more maintainable project?</p>
+<p>As the development of SprayFire progresses I'm constantly evaluating what I'm doing, how I'm doing it
+and what tools I'm using.  Lately I've been thinking about the way I use <strong>git</strong>, my
+version control software of choice.  Looking through some of the commits for SprayFire I can tell that
+my commit strategy needs some work.  Commit messages are sometimes lengthy or don't really convey what
+the commit is doing.  What are some things that I can do to improve my commits and make for a more maintainable project?</p>
 
 <h3>commit, commit, commit</h3>
 <p>Well, the first thing is to simply commit more often.  Too often I find myself making a series of

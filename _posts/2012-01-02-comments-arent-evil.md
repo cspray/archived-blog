@@ -10,11 +10,10 @@ disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/02/comments-arent-evil
 disqus_url: http://cspray.github.com/2012/01/02/comments-arent-evil.html
 disqus_title: comments aren't evil; comment your code
+category: programming
 ---
 
-<h2>comments aren't evil; comment your code</h2>
-
-<ul style="list-style:none;">
+<ul class="no-list-icon no-padding">
     <li>
         <p><b>Dissenter:</b> Charles, you <i>noob</i>!  Comments <b>are</b> evil.  They can muddy up
         your code, nobody keeps them up to date and they're completely unnecessary.  Write short, concise

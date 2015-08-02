@@ -9,21 +9,20 @@ disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/05/19-stop-calling-them-getters-setters.html
 disqus_url: http://cspray.github.com/2012/05/13/stop-calling-them-getters-setters
+category: programming
 ---
 
-<h2>stop calling them getters and setters</h2>
-
-<p>I was having a talk with a fellow programmer and he said something to the effect that if
+I was having a talk with a fellow programmer and he said something to the effect that if
 a class property is commonly used it might as well just be public because it is easier to
 work with.  I rebutted that you should just use getters and setters and, of course, the discussion
 turned toward the validity of getters and setters and whether they break encapsulation.  Having
 had some time to chew on the information I've come to a couple conclusions, the foremost
 being that we should stop calling them getters and setters and the second being that the use
-of these mutator and accessor methods does not break encapsulation.</p>
+of these mutator and accessor methods does not break encapsulation.
 
-<h3>why getters and setters is bad terminology</h3>
+### why getters and setters is bad terminology
 
-<p>A lot of people think of, and use, getters and setters like the following class.</p>
+A lot of people think of, and use, getters and setters like the following class.
 
 {% highlight php %}
 <?php
@@ -83,37 +82,37 @@ class Person {
 ?>
 {% endhighlight %}
 
-<p>In fact, a lot of IDEs will go ahead and auto-generate this boilerplate code for you.  Of
+In fact, a lot of IDEs will go ahead and auto-generate this boilerplate code for you.  Of
 course, I'm not a big fan of having my IDEs make code API decisions for me but the feature is
 available and people do take advantage of it.  However, this is really bad code; effectively as
 bad as if we had just declared the properties public to begin with.  Any calling code can
 change the state of our class to anything they want just by using the available setter methods.
-Chances are if your classes look like this you're doing it wrong.</p>
+Chances are if your classes look like this you're doing it wrong.
 
-<p>More importantly I will stop using the getter/setter terminology exactly because the
-common perception is similar to this code and this code is <b>bad</b>.  It also isn't good OOP
-practice; you really shouldn't be <i>setting</i> the internal state of an object from calling
-code...you should be mutating it.</p>
+More importantly I will stop using the getter/setter terminology exactly because the
+common perception is similar to this code and this code is **bad**.  It also isn't good OOP
+practice; you really shouldn't be *setting* the internal state of an object from calling
+code...you should be mutating it.
 
-<h3>how to make "setter" code good?</h3>
+### how to make "setter" code good?
 
-<p>First, let's discuss encapsulation for a minute.  After all, its one of the primary
+First, let's discuss encapsulation for a minute.  After all, its one of the primary
 benefits of OOP and probably the hardest to achieve properly.  Encapsulation is not simply
 locking the internal state of an object so that it can't be manipulated.  That's counter-productive
 and probably the opposite of what you want.  You probably want to work with and do something
 to the data stored by an object.  Encapsulation is providing a clear, concise, restricted
-way to work on the data, or state, of a class.</p>
+way to work on the data, or state, of a class.
 
-<p>Clearly, the above code is not well encapsulated.  The methods may be clear, although I
+Clearly, the above code is not well encapsulated.  The methods may be clear, although I
 would argue different, and concise they are most certainly not restricted.  I mean,
 you could set the age to 'gobbledy-gook' and no one would be the wiser.  Some might "solve"
-this problem by <i>only</i> doing some kind of data check on the setters so that a weight can't be
+this problem by *only* doing some kind of data check on the setters so that a weight can't be
 set to anything but a numerical data type or a name must be a string.  However, I don't feel
-that provides any real encapsulation and working with the class can be made better.</p>
+that provides any real encapsulation and working with the class can be made better.
 
-<p>The real way to encapsulate would be to determine how you expect the data to be used by
+The real way to encapsulate would be to determine how you expect the data to be used by
 calling code.  Then implement methods that enable you to easily work with the data in the
-expected way.  Let's just dive right into fixing the above <code>Person</code> class.</p>
+expected way.  Let's just dive right into fixing the above <code>Person</code> class.
 
 {% highlight php %}
 <?php
@@ -183,21 +182,21 @@ class Person {
 ?>
 {% endhighlight %}
 
-<p>This is a much better encapsulated class.  The ways to work with the data are much more clear;
+This is a much better encapsulated class.  The ways to work with the data are much more clear;
 you can change a person's name, have them grow taller, gain weight, lose weight
 and become a year older...the normal things you'd expect a person to do or be capable of.  It
 also lets our calling code know that this is the way we expect you to work with the class's
-internal state.</p>
+internal state.
 
-<p>More importantly we aren't simply setting the internal state to whatever the calling code
-thinks it should be.  We're allowing a restricted set of <i>mutations</i>, or state changes,
-<b>not</b> any ol' arbitrary value.  We also have a much more expressive API, in my opinion,
-with these new methods.</p>
+More importantly we aren't simply setting the internal state to whatever the calling code
+thinks it should be.  We're allowing a restricted set of *mutations*, or state changes,
+**not** any ol' arbitrary value.  We also have a much more expressive API, in my opinion,
+with these new methods.
 
-<h3>conclusion</h3>
+### conclusion
 
-<p>Terminology is not just some minor technicality.  The words that we choose to communicate
-our ideas and thoughts are <b>important</b>.  Thinking about them as getters and setters,
+Terminology is not just some minor technicality.  The words that we choose to communicate
+our ideas and thoughts are **important**.  Thinking about them as getters and setters,
 particularly setters, in the auto-IDE generated fashion leads to poor design.  Think about
 how your classes state should be mutated and accessed; provide methods that facilitate those
-changes in a clear, concise, restricted way.</p>
+changes in a clear, concise, restricted way.

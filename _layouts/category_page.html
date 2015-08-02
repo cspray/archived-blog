@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<h2>Category: {{page.category}}</h2>
+
+<ul class="no-list-icon no-padding">
+  {% for post in site.categories[page.category] %}
+    <li>
+      {% include post-excerpt.html post=post %}
+    </li>
+  {% endfor %}
+</ul>

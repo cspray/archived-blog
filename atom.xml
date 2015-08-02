@@ -1,14 +1,13 @@
 ---
-layout: nil
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>ramblings of a PHP enthusiast</title>
- <link href="http://cspray.github.io/atom.xml" rel="self"/>
- <link href="http://cspray.github.io/"/>
+ <link href="http://blog.cspray.net/atom.xml" rel="self"/>
+ <link href="http://blog.cspray.net/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://cspray.github.io/</id>
+ <id>http://blog.cspray.net/</id>
  <author>
    <name>Charles Sprayberry</name>
  </author>
@@ -16,7 +15,7 @@ layout: nil
  {% for post in site.posts %}
  <entry>
    <title type="text">{{ post.title }}</title>
-   <link href="http://cspray.github.io/{{ post.url }}"/>
+   <link href="http://blog.cspray.net{{ post.url }}"/>
    <author>
         <name>Charles Sprayberry</name>
    </author>
