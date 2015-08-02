@@ -4,7 +4,7 @@
  <title>ramblings of a PHP enthusiast</title>
  <link href="http://blog.cspray.net/atom.xml" rel="self"/>
  <link href="http://blog.cspray.net/"/>
- <updated>2015-08-02T12:55:19-04:00</updated>
+ <updated>2015-08-02T13:24:06-04:00</updated>
  <id>http://blog.cspray.net/</id>
  <author>
    <name>Charles Sprayberry</name>
@@ -23,30 +23,30 @@
    <content type="html">&lt;p&gt;If you’ve read my blog before you know about a project I worked on called SprayFire.
 It was my homebrewed framework. It taught me a lot about design patterns, the need
 for modular libraries, and helped get me a job. Some time ago I deleted the project.
-This post talks about why I deleted the project… and what took its place.&lt;/p&gt;
+This post talks about why I deleted the project and what I’ve been working on
+instead.&lt;/p&gt;
 
 &lt;h2 id=&quot;why-it-had-to-go&quot;&gt;why it had to go&lt;/h2&gt;
 
 &lt;p&gt;I started to use SprayFire and realized it had a critical flaw for how I like to
-structure and build applications. I’ve come to the belief that small, hyper-specific
-libraries wired together is a better solution than one, monolithic architecture.
+structure and build applications. I’ve come to believe that small, hyper-specific
+libraries wired together is a better solution than a single, monolithic architecture.
 There’s a lot of really great libraries already out there that do what individual
-SprayFire components did, only better.&lt;/p&gt;
+SprayFire components did, only better. It only makes sense to use them.&lt;/p&gt;
 
 &lt;p&gt;The project, while useful, simply wasn’t how I believe applications should be built
 after lessons learned from experience. Instead of restructuring the framework for
-what would be a 4th time I decided to simply start completely fresh with a brand
-new project.&lt;/p&gt;
+what would be a 4th time I decided to start completely fresh. Instead of building
+a framework I started writing specific libraries instead.&lt;/p&gt;
 
-&lt;p&gt;While SprayFire, and its replacement, is an educational experience I also &lt;em&gt;want&lt;/em&gt;
-other people to build an application on top of my framework. Knowing that the
-project wasn’t something I believed in or supported I removed it from GitHub
-instead of allowing it to exist. Sometimes programmers can develop an emotional
-attachment with their code; no such attachment existed here. The code didn’t
-serve its purpose and was removed.&lt;/p&gt;
+&lt;p&gt;While SprayFire was an educational experience I also &lt;em&gt;want&lt;/em&gt; other people to build
+stuff with my work. Knowing that the project wasn’t something I believed in or
+supported I removed it from GitHub instead of allowing it to exist. Sometimes
+programmers can develop an emotional attachment with their code; no such attachment
+existed here. The code didn’t serve its purpose and was removed.&lt;/p&gt;
 
 &lt;p&gt;I’ve went back through all my old posts that reference SprayFire and have removed
-links along with putting up a disclaimer where the project was mentioned.&lt;/p&gt;
+links along with putting up a disclaimer pointing out that the project doesn’t exist.&lt;/p&gt;
 
 &lt;h2 id=&quot;what-ive-been-up-to&quot;&gt;what I’ve been up to&lt;/h2&gt;
 
@@ -57,10 +57,19 @@ libraries. Some of the cooler things include:&lt;/p&gt;
 &lt;div class=&quot;github-repo-card&quot;&gt;
   &lt;h3 class=&quot;github-repo-card--name&quot;&gt;Labrador&lt;/h3&gt;
   &lt;p class=&quot;github-repo-card--description&quot;&gt;
-    A microframework for PHP7 that ties together a DI Container, an event emitter,
+    A library for PHP7 that ties together a DI Container, an event emitter,
     and a plugin system to facilitate building small-to-medium sized PHP applications.
   &lt;/p&gt;
   &lt;a href=&quot;https://github.com/cspray/labrador&quot;&gt;https://github.com/cspray/labrador&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;github-repo-card&quot;&gt;
+  &lt;h3 class=&quot;github-repo-card--name&quot;&gt;Labrador HTTP&lt;/h3&gt;
+  &lt;p class=&quot;github-repo-card--description&quot;&gt;
+    A microframework using Labrador, a highly-performant routing system, and
+    a well-known HTTP abstracto to help create web-based PHP applications.
+  &lt;/p&gt;
+  &lt;a href=&quot;https://github.com/cspray/labrador-http&quot;&gt;https://github.com/cspray/labrador-http&lt;/a&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;github-repo-card&quot;&gt;
