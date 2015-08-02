@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="A look at what should be the first thing you fix in a code full of spaghetti" />
+  <title>spaghetti triage -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>spaghetti triage</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-03-13 00:00:00 -0400">3 years and 4 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+
+  <p>I was having lunch today with a fellow developer and the conversation included flawed web-based systems.
+Systems in which there are fundamental flaws and there are numerous issues to fix.  Imagine a typical
+spaghetti-fied, insecure mess.  I asked the guy what he would fix first.  His answer was, in principle,
+the same as my answer…separate concerns, especially getting the “view” out of the business logic.</p>
+
+<p>This got me thinking.  Why did I choose that specific problem to fix first?  Why not fix common security
+issues, like <a href="http://en.wikipedia.org/wiki/Sql_injection">SQL Injection</a>,
+<a href="http://en.wikipedia.org/wiki/Cross_site_scripting">Cross-Site Scripting</a> and <a href="http://en.wikipedia.org/wiki/Remote_file_inclusion">Remote File Inclusion</a>?
+In this blog post I will discuss why I would choose to separate the view from the business logic first
+and give an example in code on how one might begin to separate the templating of HTML in a spaghettified
+PHP application.</p>
+
+<h3 id="why-separate-the-view-first">why separate the view first?</h3>
+
+<p>That’s a really good question.  After all, when compared to security vulnerabilities that effect the
+validity of your data separating the view seems insignificant in comparison.  However, we must keep
+in mind that developers are human too and understanding business logic intermingled with the view, or
+HTML, is insanely difficult and time consuming.  Seemingly everything becomes much longer and clunkier
+than the business requirements need.  It is also extremely hard to determine how the different parts
+of the view scattered through everything comes together to form the whole.  Ultimately this means the
+view turns into something you despise.  When you want to work with the view the section you need is
+impossible to find and when you don’t want to work with the view it is the only thing you see.</p>
+
+<p>We also have to take into account that securing an already established insecure system is going to be
+very timely, difficult and error-prone.  Nobody really knows what’s going on in code spaghetti.  Was
+the user input validated already?  What about formatting or sanitizing the data against some business
+logic?  Knowing if you should be doing those things to a particular piece of data at any given time
+is pretty important.  After all, <a href="http://stackoverflow.com/questions/4171318/is-double-escaping-a-string-wrong">data can become invalid if you escape too much</a>
+and attempting to format an already formatted value is a waste of resources.  Basically,
+security is gonna be easier to implement in a cleanly separated system.</p>
+
+<h3 id="how-would-you-separate-the-view">how would you separate the view?</h3>
+
+<p>We have to understand that the answer here is not to go and integrate some advanced
+templating system, like <a href="http://www.smarty.net/">Smarty</a> or <a href="http://twig.sensiolabs.org/">Twig</a>.
+While these can be very powerful tools, and I understand why they might be used, I wouldn’t consider
+them in this situation for 2 reasons.  The first, and most important, being that the last thing you
+want to add to an already complex, overladen system is more complexity.  Integrating a third party
+system into spaghetti is just not gonna work out well.  Whatever solution is implemented must be simple
+and able to be easily absorbed, if you will, by the code base.  The change must be small, gradual and
+ultimately would need to be made available globally.  I’m a strong proponent of working within the
+local scope, however that isn’t what spaghetti is.  Whatever templating system you choose will, initially,
+need to be made available to all the things.</p>
+
+<p>The second reason is more a personal preference as it is anything else but quite simply PHP is already
+a templating system.  It works with HTML just fine thank you very much and it has <a href="http://php.net/manual/en/control-structures.alternative-syntax.php">an alternate syntax</a>
+that makes for easy addition of simple control and looping structures.  In 5.4 the language also introduces
+the <a href="http://php.net/ChangeLog-5.php">always-on short echo tag feature</a> where a variable can be echod by simply
+wrapping it in <code>&lt;?= ?&gt;</code>. PHP is already a templating system, there’s no need to add another
+one on top of it in most situations.</p>
+
+<p>Looking at all the requirements I would likely start off with a single class and a single public static
+method called <code>renderHtml($fileName, $data)</code>.  Let’s take a look at actual code that might do this.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">View</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$templateDir</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/templates/&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">renderHtml</span><span class="p">(</span><span class="nv">$fileName</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">array_walk_recursive</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="s1">&#39;htmlspecialchars&#39;</span><span class="p">);</span>
+        <span class="nb">extract</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+        <span class="nb">ob_start</span><span class="p">();</span>
+        <span class="k">include</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$templateDir</span> <span class="o">.</span> <span class="nv">$fileName</span> <span class="o">.</span> <span class="s1">&#39;.php&#39;</span><span class="p">;</span>
+        <span class="nv">$output</span> <span class="o">=</span> <span class="nb">ob_get_clean</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nv">$output</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>As you can see there’s just not a whole lot that is involed here.  First we make sure all the data
+in the array has been properly escaped to prevent XSS attacks.  Then we extract the data in the array
+so that the template file has access to the variable data it needs.  Finally, start output buffering,
+include the file and return whatever was generated.  Definitely nothing complex but it will allow you
+to start separating the view from your business logic.  Once that has been completed other changes will
+be much easier to implement.</p>
+
+<blockquote>
+  <p>I realize the short-tag echo feature, <code>&lt;?= ?&gt;</code>, was available before 5.4.
+However, the feature was only available if you had your PHP INI configuration set to allow short tags.
+Since this feature was dependent on a configuration setting until 5.4 it may not be an option for your
+environment.</p>
+</blockquote>
+
+<h3 id="wrapping-it-up">wrapping it up</h3>
+
+<p>Well, there’s my reasonings for choosing separating business logic from the view as my first spaghetti
+triage priority.  I included a simple code example on how I might start disentangling the HTML from the
+rest of the PHP code as well.  What would you choose as your first triage priority and why?</p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="Taking a look at when and why to use Value Objects" />
+  <title>when and why to use Value Objects -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>when and why to use Value Objects</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-06-30 00:00:00 -0400">3 years and 1 month ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>Recently I’ve dived back into SprayFire and one of the things that I have been working on is making use of <a href="http://martinfowler.com/bliki/ValueObject.html">Value Objects</a>.  I have given some thought to when should I use a Value Object and when should I just use an associative array.  After all, PHP is not a purely object-oriented language, there are many paths to your destination, and arrays in PHP are extremely powerful and useful.  But, then again, so are objects.  When should you use a value object over an array?  <em>Why</em> should you use a Value Objects?</p>
+
+<h3 id="when-to-use-value-objects-over-arrays">when to use value objects over arrays</h3>
+
+<p>The true answer, like most subjective things in software development, boils down to proper analysis of your application and making good decisions based on that analysis.  There is no single, this is the right way 100% of the time, answer.  Do what is best for you and makes sense.</p>
+
+<p>Going beyond that though there are guidelines that I use to help me make that decision.  The first guideline is to <strong>remember the power of arrays in PHP</strong>.  There’s all kinds of cool things that you can do with <a href="http://php.net/manual/en/ref.array.php">array functions</a> that objects don’t easily allow.  Also remember that arrays are less resource intensive then objects.  If you’re planning on creating a large number of items then arrays might be the better choice.</p>
+
+<p>After I’ve reasoned that in common use cases the potential Value Object wouldn’t need any of those array functions then I look to see if it is a confined, limited and/or known set of key/value pairs that I’ll be working with.  I think a big part of the value, pun intended, with Value Objects is that they are more <em>expressive</em>.  This expressiveness means that a Value Object should represent a distinct set of data, that your average developer can deduce simply by look at the name of the object.  If the data in the array is widely dynamic or a numerically indexed list of data then obviously this doesn’t make it easy to keep our set of data relational.</p>
+
+<p>A great example of when to use a Value Object would be a data source login.  Perhaps something like…</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">DataAccessCredentials</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$user</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$password</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$server</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$sourceName</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$port</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$password</span><span class="p">,</span> <span class="nv">$server</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="nv">$sourceName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$port</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$user</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$password</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">server</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$server</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sourceName</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$sourceName</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">port</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$port</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getUser</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPassword</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getServer</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">server</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getSourceName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sourceName</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPort</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">port</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">equals</span><span class="p">(</span><span class="nv">$Credentials</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nv">$Credentials</span> <span class="nx">instanceof</span> <span class="nv">$this</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// compare fields here to determine equality</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>This implementation has a couple things going for it.  It is immutable, once the object is constructed there’s no changing the values.  The object supplies a method to check equality, allowing us to compare two Value Objects the way they should be compared.  Finally, the data belongs together.  All of those properties are perfectly reasonable to be a part of this object and relate to one another.</p>
+
+<p>On the opposite end of that, something like a result set from a call to the data access object using those credentials should probably be returned as an array.  The results are likely to be varied, highly dynamic and quite possibly very large.  All these things definitely make the array way more attractive.</p>
+
+<h3 id="why-you-should-use-value-objects">why you should use Value Objects</h3>
+
+<div class="value-object-pro">
+    **Expressiveness and Type Hinting**
+    Obviously one of the biggest pros to a Value Object is the parameter type hinting that is now allowed and the expressiveness of your code.  It is far more clear, or can be if you have good naming practices, what a Value Object is as compared to an array, again, particularly in type hints.
+</div>
+
+<div class="value-object-pro">
+    **Cleaner code, fewer errors**
+    The Value Object is an abstraction.  One that allows us to supply a needed value, or at the very least a default one.  We don't need to run any isset checks or any boilerplate array checking, all that's taken care of for us.  Just take a look at the two example constructors below; one with an array and one with a Value Object.
+
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="k">array</span> <span class="nv">$credentials</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">server</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;server&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;server&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;root&#39;</span><span class="p">;</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sourceName</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;sourceName&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;sourceName&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">port</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$credentials</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="mi">80</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">DataAccessCredentials</span> <span class="nv">$credentials</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">server</span> <span class="o">=</span> <span class="nv">$credentials</span><span class="o">-&gt;</span><span class="na">getServer</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span> <span class="o">=</span> <span class="nv">$credentials</span><span class="o">-&gt;</span><span class="na">getUser</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">password</span> <span class="o">=</span> <span class="nv">$credentials</span><span class="o">-&gt;</span><span class="na">getPassword</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">sourceName</span> <span class="o">=</span> <span class="nv">$credentials</span><span class="o">-&gt;</span><span class="na">getSourceName</span><span class="p">();</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">port</span> <span class="o">=</span> <span class="nv">$credentials</span><span class="o">-&gt;</span><span class="na">getPort</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+
+I don't know about you, but I know which one I'd rather come across in calling code and
+it isn't the one accepting an array.
+</div>
+
+<div class="value-object-pro">
+    **Immutability**
+    For me this is a really big win.  The immutability of objects is very important to me.  When I'm storing certain sets of data that could be used in a Value Object I probably don't want that data to be manipulated.  A good way to attain this immutability is to simply provide no setters to protected/private properties and only accept the values in the <code>__construct()</code> of the object.  This ensures that every time we call on a value we're sure it is going to be the one we expect.  With arrays there is simply no assurance of this immutability.
+</div>
+
+<h3 id="wrapping-it-all-up">wrapping it all up</h3>
+
+<p>I use an array when:</p>
+
+<ul>
+  <li>The data set is varied or widely dynamic.</li>
+  <li>Use cases involve using those array functions.</li>
+  <li>Creating a lot of value sets and don’t want to take an object creation hit.</li>
+</ul>
+
+<p>I’ll use an object when:</p>
+
+<ul>
+  <li>Data set is confined and relational to one another.</li>
+  <li>Probably won’t need to use array functions.</li>
+  <li>Likely not creating a large number of value sets.</li>
+</ul>
+
+<p>All in all Value Objects can add a lot of, well, value to your code base.  <strong>If</strong> used properly.  They should not simply replace associative arrays.  With everything in software development there is a price and a reward.  It is up to you to determine if the rewards of the Value Object are worth the price.</p>
+
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

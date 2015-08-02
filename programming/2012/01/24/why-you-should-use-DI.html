@@ -4,8 +4,8 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Charles Sprayberry" />
-  <meta name="description" content="" />
-  <title> -- blog.cspray.net</title>
+  <meta name="description" content="A post talking about dependency injection, how its use has benefited me and other reasons to embrace asking for things instead of looking for them." />
+  <title>why you should use DI -- blog.cspray.net</title>
   <link href="/all.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="clearfix">
-  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a></h1>
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
   <ul class="social-icons no-padding no-list-icon clearfix">
     <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
     <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
@@ -29,9 +29,80 @@
     <main class="container-fluid">
       <div class="row">
         <section class="col-md-8">
-          <p class="text-center not-found-sadface">:<span class="tear">'</span>(</p>
+          <h2>why you should use DI</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-01-24 00:00:00 -0500">3 years and 6 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
 
-<p class="text-center not-found-text">The page that your'e looking for doesn't seem to exist. Try your luck with a post from the sidebar.</p>
+
+<div class="post-content">
+  
+
+  
+
+  <p><a href="http://en.wikipedia.org/wiki/Dependency_injection">Dependency Injection</a> is all the rage
+these days, particularly when you slap the word ‘Container’ in there somewhere.  Dependency Injection
+is just a fancy term for passing dependencies to the object needing them instead of letting the object
+create its own.  Hopefully, you’ve watched this <a href="http://googledata.org/google-testing/clean-code-talks-dependency-injection/">great Google Clean Code talk about dependency injection</a> <a href="http://misko.hevery.com/">Misko Hevery</a> where he talks about why you should ask for things instead of looking for them.</p>
+
+<p>I’m gonna talk about some reasons to use DI beyond just those presented in the video.  Maybe you
+don’t unit test, although you really should, so the better testability argument doesn’t really hold
+weight for you.  Maybe you’re skeptical about the “extra work” that is needed with injecting depedencies
+instead of just creating them.  Maybe you just flat-out don’t see the benefit.  Well, I’m here to show
+you how <strong>I’ve</strong> benefited and, hopefully, convince you that you can reap these same rewards
+by asking for things instead of looking for them.</p>
+
+<h3 id="helps-global-state">helps in the battle against global state</h3>
+
+<p><a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad">Global variables are bad</a>.  If you are
+of the belief that global variables <em>aren’t</em> bad, well…I disagree with you.  Global state can
+lead to spaghetti code and is often used as a crutch for when the real problem isn’t solved.  If something
+is in the global state there better be a <em>really</em> good reason; most reasons aren’t good.  By
+using dependency injection we are plainly stating what we need to use and then use those dependencies
+within the scope of the class; not the scope of all the things.</p>
+
+<blockquote>
+  <p>Interested in learning more about how DI can win the good fight against global state?
+Check out a follow-up to this article, <a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a>,
+for a more thorough explanation and code samples.</p>
+</blockquote>
+
+<h3 id="helps-your-design">it helps your design</h3>
+
+<p>If dependency injection doesn’t make you really think about and evaluate your code you aren’t doing
+it right.  Using DI isn’t just about moving objects created in your constructor to objects passed as
+arguments to the constructor.  What I’m trying to say is, if your class is injecting a lot of different
+objects you should be treating this as a big, flashing warning sign.  It’s easier to rationalize a problem
+not being there, or even just missing it completely, if there are no consequences for your actions.  In a
+way DI adds a consequence to your actions; you can’t simply create an object with dependencies whenever
+you feel like it.  Instead you have to think about how the object is being used and what the object
+needs to complete its responsibility.</p>
+
+<p>Dependency Injection doesn’t make bad code smell, it makes bad code <em>reek</em>.  Don’t ignore
+the putrid odor wafting about your IDE.  Find the source of the stench and remove it or fix it.  Ignoring
+this stench is akin to wallowing in garbage all day and believing that a swipe of deodorant is sufficient.
+In reality you need a shower and you actually smell quite bad.</p>
+
+<h3 id="helps-srp">especially single responsibility</h3>
+
+<p>I’ve found that DI really helps out with a core tenant of good object-oriented design,
+the <a href="http://en.wikipedia.org/wiki/Single_responsibility_principle">single responsibility principle</a>.
+I firmly believe that SRP is one of the most fundamental and most crucial aspects of a good object-oriented
+solution.  This is the only way to attain modularity.  If your classes don’t encapsulate and solve a single
+responsibility, and only a single responsiblity, you are ultimately entangling problems.  This entangling of
+problems is what leads to applications not being sustainable in the market because they aren’t <em>maintainable</em>.</p>
+
+<h3 id="wrapping-it-up">wrapping it up</h3>
+
+<p>Dependency Injection isn’t just a fancy fad to prove your programming hipness.  The strategy is
+intended to solve a problem and, I think, impact the way you write code and design your applications.
+It isn’t enough to just blindly use a technique or pattern.  You have to understand <em>why</em> you
+are using that technique and what kind of benefits you’re supposed to gain from their use.  Only then
+can the technique be used effectively to solve problems and grow as a developer.</p>
+
+</div>
 
         </section>
 

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="Looking at why I won't be calling them getters and setters anymore and how you can fix boilerplate style getters/setters." />
+  <title>stop calling them getters and setters -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>stop calling them getters and setters</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-05-13 00:00:00 -0400">3 years and 2 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+
+  <p>I was having a talk with a fellow programmer and he said something to the effect that if
+a class property is commonly used it might as well just be public because it is easier to
+work with.  I rebutted that you should just use getters and setters and, of course, the discussion
+turned toward the validity of getters and setters and whether they break encapsulation.  Having
+had some time to chew on the information I’ve come to a couple conclusions, the foremost
+being that we should stop calling them getters and setters and the second being that the use
+of these mutator and accessor methods does not break encapsulation.</p>
+
+<h3 id="why-getters-and-setters-is-bad-terminology">why getters and setters is bad terminology</h3>
+
+<p>A lot of people think of, and use, getters and setters like the following class.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$height</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$weight</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$age</span><span class="p">;</span>
+
+    <span class="c1">// you can replace the default values with values suitable for your requirements</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$weight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span> <span class="o">=</span> <span class="nv">$height</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span> <span class="o">=</span> <span class="nv">$weight</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span> <span class="o">=</span> <span class="nv">$age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setName</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getHeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setHeight</span><span class="p">(</span><span class="nv">$height</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span> <span class="o">=</span> <span class="nv">$height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getWeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setWeight</span><span class="p">(</span><span class="nv">$weight</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span> <span class="o">=</span> <span class="nv">$weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAge</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setAge</span><span class="p">(</span><span class="nv">$age</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span> <span class="o">=</span> <span class="nv">$age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>In fact, a lot of IDEs will go ahead and auto-generate this boilerplate code for you.  Of
+course, I’m not a big fan of having my IDEs make code API decisions for me but the feature is
+available and people do take advantage of it.  However, this is really bad code; effectively as
+bad as if we had just declared the properties public to begin with.  Any calling code can
+change the state of our class to anything they want just by using the available setter methods.
+Chances are if your classes look like this you’re doing it wrong.</p>
+
+<p>More importantly I will stop using the getter/setter terminology exactly because the
+common perception is similar to this code and this code is <strong>bad</strong>.  It also isn’t good OOP
+practice; you really shouldn’t be <em>setting</em> the internal state of an object from calling
+code…you should be mutating it.</p>
+
+<h3 id="how-to-make-setter-code-good">how to make “setter” code good?</h3>
+
+<p>First, let’s discuss encapsulation for a minute.  After all, its one of the primary
+benefits of OOP and probably the hardest to achieve properly.  Encapsulation is not simply
+locking the internal state of an object so that it can’t be manipulated.  That’s counter-productive
+and probably the opposite of what you want.  You probably want to work with and do something
+to the data stored by an object.  Encapsulation is providing a clear, concise, restricted
+way to work on the data, or state, of a class.</p>
+
+<p>Clearly, the above code is not well encapsulated.  The methods may be clear, although I
+would argue different, and concise they are most certainly not restricted.  I mean,
+you could set the age to ‘gobbledy-gook’ and no one would be the wiser.  Some might “solve”
+this problem by <em>only</em> doing some kind of data check on the setters so that a weight can’t be
+set to anything but a numerical data type or a name must be a string.  However, I don’t feel
+that provides any real encapsulation and working with the class can be made better.</p>
+
+<p>The real way to encapsulate would be to determine how you expect the data to be used by
+calling code.  Then implement methods that enable you to easily work with the data in the
+expected way.  Let’s just dive right into fixing the above <code>Person</code> class.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$name</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$height</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$weight</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$age</span><span class="p">;</span>
+
+    <span class="c1">// you can replace the default values with values suitable for your requirements</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$weight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span> <span class="o">=</span> <span class="nv">$height</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span> <span class="o">=</span> <span class="nv">$weight</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span> <span class="o">=</span> <span class="nv">$age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">changeName</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$regex</span> <span class="o">=</span> <span class="s1">&#39;/[^A-Za-z]/&#39;</span><span class="p">;</span>
+        <span class="nv">$name</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$name</span><span class="p">;</span>
+        <span class="nv">$name</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="nv">$regex</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span> <span class="o">=</span> <span class="nv">$name</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getHeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// we assume here that you&#39;re in the US and you store the height as inches</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">growTaller</span><span class="p">(</span><span class="nv">$inches</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">height</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$inches</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getWeight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">gainWeight</span><span class="p">(</span><span class="nv">$pounds</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">float</span><span class="p">)</span> <span class="nv">$pounds</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">loseWeight</span><span class="p">(</span><span class="nv">$pounds</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">weight</span> <span class="o">-=</span> <span class="p">(</span><span class="nx">float</span><span class="p">)</span> <span class="nv">$pounds</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAge</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">growYearOlder</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">age</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>This is a much better encapsulated class.  The ways to work with the data are much more clear;
+you can change a person’s name, have them grow taller, gain weight, lose weight
+and become a year older…the normal things you’d expect a person to do or be capable of.  It
+also lets our calling code know that this is the way we expect you to work with the class’s
+internal state.</p>
+
+<p>More importantly we aren’t simply setting the internal state to whatever the calling code
+thinks it should be.  We’re allowing a restricted set of <em>mutations</em>, or state changes,
+<strong>not</strong> any ol’ arbitrary value.  We also have a much more expressive API, in my opinion,
+with these new methods.</p>
+
+<h3 id="conclusion">conclusion</h3>
+
+<p>Terminology is not just some minor technicality.  The words that we choose to communicate
+our ideas and thoughts are <strong>important</strong>.  Thinking about them as getters and setters,
+particularly setters, in the auto-IDE generated fashion leads to poor design.  Think about
+how your classes state should be mutated and accessed; provide methods that facilitate those
+changes in a clear, concise, restricted way.</p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

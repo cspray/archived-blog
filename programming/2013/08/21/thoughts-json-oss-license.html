@@ -4,8 +4,8 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Charles Sprayberry" />
-  <meta name="description" content="" />
-  <title> -- blog.cspray.net</title>
+  <meta name="description" content="My 2 cents on the latest PHP drama involving JSON.org's software license" />
+  <title>thoughts on JSON and OSS licensing -- blog.cspray.net</title>
   <link href="/all.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="clearfix">
-  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a></h1>
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
   <ul class="social-icons no-padding no-list-icon clearfix">
     <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
     <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
@@ -29,9 +29,44 @@
     <main class="container-fluid">
       <div class="row">
         <section class="col-md-8">
-          <p class="text-center not-found-sadface">:<span class="tear">'</span>(</p>
+          <h2>thoughts on JSON and OSS licensing</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2013-08-21 00:00:00 -0400">1 year and 11 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
 
-<p class="text-center not-found-text">The page that your'e looking for doesn't seem to exist. Try your luck with a post from the sidebar.</p>
+
+<div class="post-content">
+  
+
+  
+
+  <p>If you’re not aware, recently there’s been some PHP drama about <a href="http://philsturgeon.co.uk/blog/2013/08/fud-cracker-php-55-never-lost-json-support">PHP “losing” JSON support</a>. Obviously this isn’t the case and it turns out some people, getting their PHP through certain distributions, weren’t getting the JSON extension by default. It all boils back to <a href="https://bugs.php.net/bug.php?id=63520">this “bug” reported to PHP</a>.</p>
+
+<p>By now I’m sure if you’re reading my blog about PHP you already know about <a href="http://www.json.org/license.html">JSON.org’s license</a> amendment to the normal MIT license:</p>
+
+<blockquote>
+  <p>The Software shall be used for Good, not Evil.</p>
+</blockquote>
+
+<p>Ultimately this clause caused certain distributions to stop supporting PHP’s internal JSON implementation because it relies on JSON.org code. PHP’s maintainers have decided they will continue to support the implementation, even if certain maintainers don’t.</p>
+
+<p>Ok, now that everybody’s all settled down here let’s get to the actual important part of this story.</p>
+
+<h3 id="subjective-shit-in-software-licenses-is-stupid">subjective shit in software licenses is stupid</h3>
+
+<p>Douglas Crockford is clearly a smart man and knows more about computer programming in his big toe than I possess in my entire body…but this was a bone-headed move to make. The concept of good and evil is entirely subjective and can’t be proven, without significant resources, in a court of law. This one clause makes the entire license legally ambiguous; ultimately it winds up becoming a problem where software developers already have enough: legal issues.</p>
+
+<p>For an open source software that is attempting to, and did, set a web standard this is just a silly thing to perpetuate. Crockford and JSON.org have already stated they don’t see anything wrong with the license and they just don’t care about the legal quandary it creates. Which is a shame because it brings about the type of situation where bloggers are talking about license minutiae instead of solving problems and software development. Oh, it also impacts real life companies conducting business in software development.</p>
+
+<h3 id="leave-the-subjective-wording-at-the-door">leave the subjective wording at the door</h3>
+
+<p>There’s another license that takes this clause to extremes, the <a href="http://www.dbad-license.org/">Don’t Be A Dick Public License</a>. The entire premise of this license is ridiculous and what’s even more ridiculous is that software is being released under it. These licenses make it harder for software developers, not easier. Your attempts to be funny are better served not in a legal document. Because that’s exactly what any license is, a legal document.</p>
+
+<p>Dealing with legal issues is a fact of life in the software development industry. I just wish that software developers didn’t actively muddy the legal waters with their work. It only makes things harder for your fellow programmers.</p>
+
+</div>
 
         </section>
 

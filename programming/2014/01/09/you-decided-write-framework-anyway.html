@@ -4,8 +4,8 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Charles Sprayberry" />
-  <meta name="description" content="" />
-  <title> -- blog.cspray.net</title>
+  <meta name="description" content="If you're gonna write your own PHP framework here are some tips to help you get a good start and the best bang for your development buck." />
+  <title>you decided to write a framework anyway -- blog.cspray.net</title>
   <link href="/all.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="clearfix">
-  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a></h1>
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
   <ul class="social-icons no-padding no-list-icon clearfix">
     <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
     <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
@@ -29,9 +29,47 @@
     <main class="container-fluid">
       <div class="row">
         <section class="col-md-8">
-          <p class="text-center not-found-sadface">:<span class="tear">'</span>(</p>
+          <h2>you decided to write a framework anyway</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2014-01-09 00:00:00 -0500">1 year and 6 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
 
-<p class="text-center not-found-text">The page that your'e looking for doesn't seem to exist. Try your luck with a post from the sidebar.</p>
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>In case you missed my post <a href="http://cspray.github.io/2013/03/05/you-shouldnt-write-framework.html">you shouldn’t write a framework</a> I’m not a huge proponent of writing your own PHP framework. This may sound contradictory coming from a guy who has devoted a not-insignificant amount of time working on <a href="https://github.com/cspray/labrador">his own framework</a>. Regardless of all the reasons why you shouldn’t write your own framework you’re probably going to anyway; it almost seems to be a rite of passage in the PHP community. I’m not here to convince you of the folly in doing so but instead give you some advice for your own framework creation. I’ve always thought if you’re gonna do something stupid you might as well do it as smartly as you can.</p>
+
+<h3 id="write-apps-with-it">write apps with it</h3>
+
+<p>Seems like this article is just gonna be laced with hypocrisy. In the previous article one of the major negatives in building your own framework is that you really shouldn’t build apps with it. However, if you really want to build a good framework that <em>other developers</em> will want to use you need to, ya know, <strong>use it</strong>. Frameworks are apps just like any other piece of software. In the case of a framework the end user is a developer and your app’s job is to help easily create other apps.</p>
+
+<p>What I’m trying to say is that if you don’t ever use your framework to build apps you won’t find the pitfalls and pain points and places the design fails. No amount of unit tests or design or brainstorming will yield a design so failproof that users won’t find a way to punch holes into it. And your users are the kind of people that <strong>love</strong> punching holes into things. It would be great if you could find other people to build apps with your framework. But, good luck with that. PHP frameworks are a dime a dozen and you better have something pretty different to warrant a lot of constructive attention and feedback. Build your own personal apps with it, preferably ones that aren’t public facing or wouldn’t contain any really sensitive content. Take what you learn building apps with your framework to make it not suck as much. It will also help you figure out the documentation you need to write to let people know how easy it is to get up and running.</p>
+
+<h3 id="experiment-with-crazy-ideas">experiment with crazy ideas</h3>
+
+<p>Your journey must be viewed as an educational experience intended to let you learn new things. To learn new things you have to actually do new things. If you’re creating your framework just to reimplement exactly the same thing as existing frameworks then you’re doing it wrong. You should be doing something <em>different</em> and experimenting with new ideas.</p>
+
+<p>Early in your framework’s life span is the greatest time to experiment. You’ll likely not have many users that require support so you’re able to change things quickly and drastically. Take advantage of this by implementing new ideas, experimenting with them to see if they work and adjusting the design as necessary. In the early volatile time for your framework do new, crazy stuff. If it works keep it in; if it doesn’t rip it back out.</p>
+
+<h3 id="design-modular-from-the-get-go">design modular from the get go</h3>
+
+<p>SprayFire has always been intended to be a modular framework that takes different standalone modules and uses them together to make a working web development framework. Even with this goal being there since day 1 the initial design of the framework was a single, monolithic repo and directory structure. This, in hindsight, was a big mistake. Now, as I’m ripping each module into its own repo I’ve spent a lot of time doing so and have found some drawbacks to certain aspects of the design. Quite a few of the things I’ve found so far would have been caught in the initial planning phase if I had been forced to design modular from the get go. If you design components of your framework to be modular you’ll find that these standalone libraries can be more easily integrated into other projects and the overall quality of the codebase increases.</p>
+
+<h3 id="wrapping-up---tldr">wrapping up - tl;dr</h3>
+
+<p>I think something that was missed in my last article was that I do believe there are benefits to writing your own framework. I think a lot of that value is primarily in learning about PHP and software architecture. I’ve taken a break from SprayFire recently as I’ve started a new job but I am starting to get to a point I’ll be picking back up development on the project. As I look back over the project these are the things I wish I had done more of earlier in the framework’s development.</p>
+
+</div>
 
         </section>
 

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="A look at how dependency injection can help combat the global state produced by Singletons." />
+  <title>DI and global state -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>DI and global state</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-01-29 00:00:00 -0500">3 years and 6 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+
+  <p>In a previous post I talked about <a href="/programming/2012/01/24/why-you-should-use-DI.html">
+why you should use Dependency Injection</a>. It garnered a little bit of attention, getting
+<a href="http://www.reddit.com/r/PHP/comments/owcaw/why_you_should_use_dependency_injection/">some votes on reddit/r/PHP</a>
+and also showing up <a href="http://phpdeveloper.org/news/17457">on phpdeveloper.org</a>.
+With the attention came some criticism, justly served, particularly in regards to a lack of code examples.
+To help better explain each of the three aspects of DI I discussed in the previous article I’ll be going
+over each more thoroughly and with those code examples requested. I’ll be going through each point
+one at a time as the explanations will likely be of some length compared to the original post.</p>
+
+<p>I decided to start off first with something that I feel strongly about. Global state and
+<a href="http://sourcemaking.com/design_patterns/singleton">Singletons</a>. At one point my code was
+riddled with global state and Singletons.  Then I started unit testing. Let me tell ya, global state
+<em>sucks</em>. And yea, Singleton === global state.</p>
+
+<p>In the traditional Singleton pattern you retrieve the instance through a <code>Class::getInstance()</code>
+static method. This is just a fancy way of encapsulating global state. Whatever is returned from this
+method is available to <em>all the things</em>. If you think about your application can you really
+think of something that makes sense for <strong>everything</strong> to have the ability to touch?
+I know I have a hard time rationalizing something like that at this point.</p>
+
+<h3 id="meet-the-villains">meet the villains</h3>
+
+<p>First, let’s take a look at our nasty ol’ Singleton.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">NastyOlSingleton</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$host</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$password</span> <span class="o">=</span> <span class="s1">&#39;12345&#39;</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$dbName</span> <span class="o">=</span> <span class="s1">&#39;my_database&#39;</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="k">static</span> <span class="nv">$connection</span><span class="p">;</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getInstance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="o">::</span><span class="nv">$connection</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="o">::</span><span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nx">self</span><span class="o">::</span><span class="nv">$host</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$user</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$password</span><span class="p">,</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$dbName</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$connection</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>And there you have it. Your traditional, boring, just-global-state-encapsulating Singleton; this one
+returning a <code>mysqli</code> database connection. I’m sure you’ve written code like this before, I
+know I have.</p>
+
+<p>Now, let’s take a look at a simple class skeleton that might map to a database table for users.
+We aren’t gonna actually write out any SQL or anything like that; just an example of where our
+<code>NastyOlSingleton</code> might be used.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">UserTable</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$Connection</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span> <span class="o">=</span> <span class="nx">NastyOlSingleton</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">createNewUser</span><span class="p">(</span><span class="nv">$userInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$userInfo</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findUserById</span><span class="p">(</span><span class="nv">$userId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="nv">$userId</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>There you have it, some poor victim being abused by <code>NastyOlSingleton</code>. Important to
+note, after you weep for the innocent, is that we are hiding our dependency. The average onlooker
+would not be aware that beneath this seemingly benign code lies the requirement for a database connection!
+<a href="http://stackoverflow.com/users/208809/gordon">Gordon</a>, a Stack Overflow member, said,
+“Applications with no depedencies don’t exist. I just want them to be manageable and explicit.”</p>
+
+<p>I would say that our dependencies are neither manageable or explicit.</p>
+
+<h3 id="the-problem-with-this-approach">the problem with this approach</h3>
+
+<p>We’ve now tied our application to the concreate implementation of <code>NastyOlSingleton</code>.
+Further more, our application architecture is setup so that anything can gain access to the database.
+Since the object is available everywhere it won’t hurt if we just use it in the view just this one time
+because we’re behind on a deadline. It doesn’t matter that objects everywhere in our application are
+using our database all willy-nilly with no regards to the sanctity of our data.  Since we’re so
+awesome we also don’t need to unit test so don’t worry about the problems static makes in that department.</p>
+
+<p>As you can see, global state isn’t friendly. It can lead to bad code and, even worse, <strong>bad
+design decisions</strong>. Is all code that uses Singleton and global state <em>bad</em>?  No, but
+I would venture that it leads to easier bad design decisions then solutions where the problem was thought
+through in such a manner that didn’t require global state.</p>
+
+<h3 id="the-solution">the solution</h3>
+
+<p>For this particular problem there is an easy, elegant solution that utilizes the <a href="http://sourcemaking.com/design_patterns/factory_method">Factory design pattern</a>
+and, you guessed it, Dependency Injection.  Whenever I see somebody utilizing
+a Singleton I think to myself that a Factory should probably be responsible for producing that object.
+The calling code shouldn’t really care at all if the object being used is an instance shared among other
+objects or one created just for its own special use. Let the Factory be responsible for dictating whether
+or not an object instance is shared. Then remove all those crappy <code>static</code> methods and
+properties from your classes.</p>
+
+<p>Let’s take a look at some more code. This time a Factory that will produce objects like <code>UserTable</code>.
+Note that in the constructor we’re explicitly stating, “Hey, guys, I need a database connection over here.”</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">DbTableFactory</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$Connection</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">msyqli</span> <span class="nv">$Connection</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span> <span class="o">=</span> <span class="nv">$Connection</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getObject</span><span class="p">(</span><span class="nv">$tableName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nv">$tableName</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>And of course we should change up our <code>UserTable</code> class to match up with our new and improved
+Dependecy Injection.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">class</span> <span class="nc">UserTable</span> <span class="p">{</span>
+
+    <span class="k">protected</span> <span class="nv">$Connection</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">mysqli</span> <span class="nv">$Connection</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span> <span class="o">=</span> <span class="nv">$Connection</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">createNewUser</span><span class="p">(</span><span class="nv">$userInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$userInfo</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">findUserById</span><span class="p">(</span><span class="nv">$userId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Connection</span><span class="o">-&gt;</span><span class="na">read</span><span class="p">(</span><span class="nv">$userId</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>What about <code>NastyOlSingleton</code>?</p>
+
+<p><img src="/img/nuclear_explosion.jpg" title="Destroy the Singleton.  Perhaps even with a fire." alt="Destroy the Singleton.  Perhaps even with a fire." class="center-block" width="400" height="340" /></p>
+
+<h3 id="wait-what-are-we-really-gaining-here">wait, what are we really gaining here?</h3>
+
+<p>As you can see the <code>UserTable</code> hasn’t really changed all that much on the inside.  Its
+still calling the same methods in the same ways. But, it has that very, very important constructor
+dependency; effectively communicating that this object needs a <code>mysqli</code> connection or it
+is useless. This leaves you with a much more flexible solution, you can create that database connection
+however you want. Perhaps you have another Factory taking care of actually creating the connection.</p>
+
+<p>Most importantly though you’re no longer exposing the database to all the things.  Only the objects
+that truly need to access the database have the ability to do so.  When you start seeing weird data
+showing up in queries you’ll thank yourself that you have a limited number of objects that can be
+responsible. Oh, and as a little bonus you have more control over how your database connection is
+handled and the side effects stemming from its use. For example, you might want to throw exceptions
+instead of triggering an error for a given connection.</p>
+
+<h3 id="wrapping-it-up">wrapping it up</h3>
+
+<p>Ultimately the code examples here are pretty simple because the basic idea here is pretty simple.
+Global state, and by extension Singleton, is bad. Its bad for a lot of different reasons; leads to
+entangling of concerns, makes easier to choose bad design decisions, and makes unit testing a nightmare.
+The best way to avoid global state and that NastyOlSingleton is to use Dependency Injection and build
+your application so you’re more inclined to make <em>good</em> design decisions as compared to bad
+ones.</p>
+
+<p><a href="/programming/2012/01/24/why-you-should-use-DI.html">Return to why you should use DI</a></p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

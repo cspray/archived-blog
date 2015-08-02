@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="A look at the Model-View-Controller design pattern and the way the pattern is implemented in SprayFire" />
+  <title>SprayFire and MVC design pattern -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>SprayFire and MVC design pattern</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-01-03 00:00:00 -0500">3 years and 7 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>MVC must be one of the most over-used acronyms in the PHP framework community.  In SprayFire docs
+and source code I’ve made a concerted effort to avoid use of the term MVC, except where appropriate.  Too
+many people have their preconceived notions on how this design pattern should work and often anything that
+diverges from the traditional implementation is treated as some form of abomination, a code pariah to be
+dumped as soon as possible.  Reading this article, and the other articles talking about SprayFire’s interpretation of
+the pattern, I ask that you open your mind.  Drop your preconceived notions.  There is nothing wrong with new
+ideas, even if you don’t agree with them.  If an idea winds up not working, it won’t survive.  If it does wind
+up working it might just make things better.  To not even consider the idea, I believe, would be folly.</p>
+
+<h3 id="web-mvc-is-not-desktop-mvc">web MVC is <strong>not</strong> desktop MVC</h3>
+
+<p>The first thing to do is get rid of this silly notion that for some reason a design pattern for
+desktops must be implemented the exact same way on the web.  Why?  They are two completey different ways
+of running software.  Desktop software does not equal web software, regardless of how close the two have
+appeared to merge to the user.  To the <em>developer</em> many of the technologies used for web development have
+been around for years, it is simply the way in which we are using them that has changed.  Remember, MVC
+is a <em>design</em> pattern, free to be changed and iterpreted differently.  It is not a concrete set-in-stone
+checklist for writing quality software.</p>
+
+<h3 id="mvc-the-right-kind-does-work-on-the-web">MVC, the right kind, does work on the web</h3>
+
+<p>You hear it all the time.  MVC doesn’t work on the web.  Sure, your attempt to sledge hammer a desktop
+design pattern onto the web doesn’t work.  That doesn’t mean MVC on the web is a bad idea.  MVC is simply
+a way to separate the concerns of your application.  This is a <strong>good</strong> thing.  That’s the end
+goal; to separate the responsibilities of your application in such a way that it is easily maintained, portable and
+modular.  If you accomplish these things, with clean, unit-tested code, does it really matter if your application’s
+interpretation of MVC is unorthodox?  I think no.</p>
+
+<h3 id="model-is-your-application">Model is your application</h3>
+
+<p>The Model is not just an object to make querying a database easier.  It isn’t even an object or single
+class at all.  Think of the Model as a layer of your app that is responsible for the <em>real life problem</em>
+you are attempting to solve.  Maybe your app is complicated and you need multiple Model layers to accomplish all
+of the different functionality.  But, ultimately the Model makes use of a variety of objects related to data
+persistence, validation, and whatever else your app needs to provide the appropriate data.  Ultimately the
+Model should be able to exist entirely independent of the View and Controller.</p>
+
+<h3 id="view-is-really-responder">View is really Responder</h3>
+
+<p>I’ve never much cared for the name of the middle initial in MVC, at least not in the context of web apps.  It
+simply doesn’t make much sense.  We are not sending a Graphical User-Interface to the user.  We are sending, ultimately, a
+string of text to the user.  The browser, or a scripting language in that browser, then interprets the text
+into a fancy display.  On the backend we shouldn’t think of what we are sending back to a user’s request as a
+graphic view, because it <strong>isn’t</strong>.  Even if you’re of the philosophy that HTML ultimately results in a
+graphical interface and thus can be considered a View you’re completely disregarding other types of web response
+data, like JSON and XML.  How does a JSON object returned for an AJAX request really represent a “view” of something?
+I don’t believe that it does.</p>
+
+<p>We need to break away from tradition.  What is the View <em>really</em> doing?  What is it truly responsible for?
+Well, in SprayFire the “View” is responsible for generating a <strong>response</strong>, based on data gathered by
+the Controller from the Model.  Since sending HTTP headers is so directly tied to sending output we also delegate that
+responsibility to the “View” as well.  If you boil away all the extra stuff you wind up coming to the realization that the
+“View” is really generating and sending a response.  This sounds to me more like a <strong>Responder</strong> and not something
+that is a View.</p>
+
+<p>An obvious example of a Responder would be <code>HtmlResponder</code>.  It would take data from the Controller, put that
+data into some kind of HTML template system and then output the resulting HTML.  Pretty simple stuff really.  A <code>JsonResponder</code>
+would be pretty similar.  Except sending JSON instead of HTML.  It would take the data from the controller, turn it into an appropriate JSON object,
+and  then send the response along with the appropriate headers for that response type.  Its pretty easy to see from here that you might also
+create a <code>XmlResponder</code> or maybe even a <code>RssResponder</code>.  Ultimately though, regardless of the type of
+data, its all just a <em>response</em>.</p>
+
+<h3 id="controller-talks-to-model-for-the-responder">Controller talks to Model for the Responder</h3>
+
+<p>We have a layer to gather the appropriate data for a response, Model.  We have a layer to generate that response and send it to the user,
+Responder.  Now we need a way to get that data from the Model to the Responder.  This is where Controller comes in, think of it
+as a translator of sorts.  The Model and Responder are two foreign dignitaries that must work together but don’t speak each
+other’s language.  The Controller is there to facilitate this communication.  A request comes in, the Controller talks to the Model, gets
+the appropriate data and then “translates” it into something a Responder can use.  Ultimately, that’s all the Controller is responsible for.
+Getting data from the Model to the Responder.</p>
+
+<h3 id="theres-more-to-web-mvc-than-the-m-the-delvdel-r-and-the-c">there’s more to web MVC than the M, the <del>V</del> R, and the C</h3>
+
+<p>Much like other frameworks SprayFire uses other objects to help facilitate the interaction of the three primary layers.  I won’t go into
+much detail about these objects here but I will list some of them.  Other articles will come that discusses their role in <strong>MRC</strong>,
+SprayFire’s interpretation of the MVC design pattern.</p>
+
+<ul>
+  <li>Front Controller</li>
+  <li>Router</li>
+  <li>Components</li>
+  <li>Behaviors</li>
+  <li>Helpers</li>
+</ul>
+
+<h3 id="tldr">tl;dr</h3>
+
+<ul>
+  <li>Model === Your app</li>
+  <li>Model !== database storage</li>
+  <li>View === Responder</li>
+  <li>View !== HTML</li>
+  <li>Controller === Mediator</li>
+</ul>
+
+<h3 id="wrapping-it-up">wrapping it up</h3>
+
+<p>If you got this far, thanks for reading my article.  I hope it, at the very least, was thought provoking.
+Important to take away though is that design patterns are <em>guides</em> for solving a problem.  They are
+not set-in-stone processes that must be followed blindly simply because somebody else did it that way.  Innovation
+does not happen in the status quo.</p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

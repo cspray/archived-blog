@@ -4,8 +4,8 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Charles Sprayberry" />
-  <meta name="description" content="" />
-  <title> -- blog.cspray.net</title>
+  <meta name="description" content="Talking about some of the primary reasons I practice Test Driven Development in my own personal projects." />
+  <title>why I TDD -- blog.cspray.net</title>
   <link href="/all.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="clearfix">
-  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a></h1>
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
   <ul class="social-icons no-padding no-list-icon clearfix">
     <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
     <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
@@ -29,9 +29,51 @@
     <main class="container-fluid">
       <div class="row">
         <section class="col-md-8">
-          <p class="text-center not-found-sadface">:<span class="tear">'</span>(</p>
+          <h2>why I TDD</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2013-06-06 00:00:00 -0400">2 years and 1 month ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
 
-<p class="text-center not-found-text">The page that your'e looking for doesn't seem to exist. Try your luck with a post from the sidebar.</p>
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>A little over a year and a half ago I started working on the SprayFire project and <a href="http://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. At the time I started with unit testing I really wasn’t sure what the benefits, if any, would be. Now having had time spent writing a decent sized codebase and many unit tests the benefits are obvious and numerous.</p>
+
+<p>Below are some of the primary reason I like to unit test my personal projects and why you might find success in unit testing as well.</p>
+
+<h3 id="im-confident-in-my-codebase">I’m confident in my codebase</h3>
+
+<p>Without tests developers live in a persistent state of worry and fear. Is this commit going to break something? Does this commit even satisfy the requirements of the project? Without unit tests it is hard to answer these questions when you develop new features. Without unit tests it is increasingly harder to answer these questions 6 months down the road when half of your development team has added to the project and refactored your code.</p>
+
+<p>However with unit tests I am confident in my ability to adapt the codebase to changes. I’m confident that I can make those changes and not break other parts of the system. If I do break other parts of the system I have a warning before anything bad happens in a production environment. This makes me worry less about committing code or making changes because I have visual, undeniable proof of my work.</p>
+
+<h3 id="it-makes-me-think-about-what-im-coding">it makes me think about what I’m coding</h3>
+
+<p>A TDD myth is that by practicing this type of development you get a modular, well structured, clean system regurgitated out of the other end of the process. Unfortunately, that’s not really how it works. Writing unit tests and TDD are not magical processes that make your design instantly great.</p>
+
+<p>Thought, effort and research still have to go into the designs of your codebases. TDD helps force you think about the design up front <em>before you write any code</em>. You can think of your unit tests as the <strong>very first app utilizing your code base</strong>. If, while creating this initial app, you find that it is hard or clumsy to write the tests then your actual users will have a hard or clumsy time using your code.</p>
+
+<h3 id="it-makes-you-feel-good-and-is-fun">it makes you feel good and is fun!</h3>
+
+<p>No, seriously. Writing unit tests really is a lot of fun and you’ll feel better having done it. Writing a test, seeing it fail and then writing code to make that test <em>succeed</em> is a huge feeling of accomplishment. The great thing is if you’re doing TDD right then you’ll get that feeling of accomplishment frequently and continuously throughout the software lifecycle.</p>
+
+<p>After more practice the <span class="text-danger">red</span>/<span class="text-success">green</span>/<span class="text-danger">red</span> becomes a comfortable way to develop. You no longer wonder “How do I start this project?”; you know what to do…write a unit test. Eventually, if you’re passionate enough about programming, I firmly believe you’ll have a lot of fun writing unit tests and TDD.</p>
+
+<h3 id="you-should-write-tests-too">you should write tests too</h3>
+
+<p>There’s a variety of different ways to create software. Do what’s best for you, makes you productive and results in maintainable, easy-to-read software. However, if you haven’t tried TDD I strongly suggest that you do. Give it a real shot too; not just write a single test and call it a day. Finish your next small project using TDD philosophies, you might just find that you like it.</p>
+
+</div>
 
         </section>
 

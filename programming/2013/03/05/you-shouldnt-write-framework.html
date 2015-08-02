@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="Discussing why you should but mostly shouldn't write a PHP framework" />
+  <title>you shouldn't write a framework -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>you shouldn't write a framework</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2013-03-05 00:00:00 -0500">2 years and 5 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>It is almost a rite of passage in the PHP community. If you’ve ever done any serious object oriented PHP you’ve probably created, or at least used, a framework of some kind. There are literally thousands of shitty frameworks out there that will never get used for anything. Mine is SprayFire.</p>
+
+<p>My framework started as a learning experience. I had gotten into the internals for some of the more popular frameworks and realized that I could probably do what they were doing, what I was doing with the mainstream frameworks at the time was pretty simple stuff. Soon SprayFire turned into something that I spent quite a bit of my spare time developing. It has been an interesting experience and has provided me with quite a few theoretical benefits and, maybe, some more tangible benefits as well.</p>
+
+<p>But I’m not sure writing your own framework is a smart move. You probably shouldn’t, but maybe should, write your own PHP framework.</p>
+
+<h3 id="you-shouldnt-write-a-framework-becausehellip">you shouldn’t write a framework because…</h3>
+
+<h4 id="it-is-highly-unproductive">it is highly unproductive</h4>
+
+<p>Chances are you won’t be getting paid to write your framework. Chances are also pretty good that you won’t ever use your framework to create an application that generates revenue. It just isn’t smart to use a homebrewed solution for a lot of things just because there’s so many other frameworks out there that are battle hardened and handle problems you don’t even know exist yet. There’s a high probability that code you write implementing your own framework is a complete waste of your time…from a financial perspective.</p>
+
+<p>Build something else instead. Solve some problem that isn’t already solved. Build a mobile app and create a PHP powered back-end. Launch your own small business creating websites using already existing frameworks. There’s a slew of things you can do with PHP that are financially productive. <strong>Writing a framework is very rarely one of them.</strong></p>
+
+<h4 id="youre-gonna-want-to-build-applications-with-it">you’re gonna want to build applications with it</h4>
+
+<p>Nobody is going to put forth the time and effort needed to build even a semi-useable framework and just throw it all away. You’re gonna want to use your creation for something. It’s only natural. The problem is that you probably shouldn’t use it for anything serious. As you go through using your framework for applications you’re gonna realize where your framework is lacking something fundamental. Then you have to make a decision, hack around the limitations of your still fledgling framework or put your revenue-making project on hold to go implement the changes in your framework. Your framework will also probably introduce all kinds of vulnerabilities and unforeseen problems that other frameworks have already solved because they’ve already experienced them.</p>
+
+<h3 id="you-should-write-a-framework-becausehellip">you should write a framework because…</h3>
+
+<h4 id="youll-learn-stuff-about-php-not-a-framework">you’ll learn stuff about <em>PHP</em>, not a framework</h4>
+
+<p>For the most part if you use a framework you’ll be learning the framework and not PHP. That isn’t to say you won’t learn PHP at all. You’ll learn the proper syntax and how to make PHP and your framework do things. There’s nothing necessarily wrong with that. Doing things is pretty damn important and is a large part of the reason why you’re a developer, to make computers do things. But, in depth knowledge of the language you’re utilizing isn’t necessarily a bad thing either. There’s quirks and traps in the language that you’ll never know unless you slavishly follow PHP internals, bugs and mailing lists and have a near photographic memory or you experience them. Writing your own framework forces you to get closer to all those warts on PHP.</p>
+
+<h4 id="it-is-a-tangible-code-base-you-can-put-in-your-portfolio">it is a tangible code base you can put in your portfolio</h4>
+
+<p>Even if the framework is never used for anything chances are it’ll grow to be a somewhat substantial codebase if you’ve put forth serious effort into development. You can use this in your portfolio to show potential employers, “Hey, this is some code I’ve written and how I solve problems.”</p>
+
+<p>Your mileage may vary in the value of this but for students, beginners and people just starting out having <em>something</em> that you can point to as an example of how you write code is hugely important. You might be a great developer but suck at business skills and just can’t land clients. Whatever your reason for needing to do so a framework is definitely something you can put in your portfolio and it helps. I’ve gotten 2 job interviews, in some part, thanks to SprayFire. One of those interviews landed me my current job.</p>
+
+<p>That being said, an actual <strong>application</strong> is a tangible code base you can put in your portfolio too so this is really a weak argument. I really couldn’t come up with another reason beyond learning more about PHP for writing your own framework.</p>
+
+<h3 id="but-really-dont-write-a-framework">but really, don’t write a framework</h3>
+
+<p>If I had to suggest a fresh PHP developer just starting down the programming career path I would recommend them to <strong>not write their own framework</strong>. It is hugely unproductive, is only beneficial if you plan to stick with the language for an extended period of time and can be a huge time sink where productivity goes to die. Write a useful app instead that solves a personal problem or you can make a living off of.</p>
+
+<p>That being said I’m gonna keep on developing SprayFire. Clearly I’m a masochist.</p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

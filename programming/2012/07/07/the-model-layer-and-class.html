@@ -4,8 +4,8 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="author" content="Charles Sprayberry" />
-  <meta name="description" content="" />
-  <title> -- blog.cspray.net</title>
+  <meta name="description" content="The Model in the SprayFire framework, both a layer and a class" />
+  <title>the model, a layer and a class -- blog.cspray.net</title>
   <link href="/all.css" type="text/css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
   <body>
 
     <header class="clearfix">
-  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a></h1>
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
   <ul class="social-icons no-padding no-list-icon clearfix">
     <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
     <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
@@ -29,9 +29,58 @@
     <main class="container-fluid">
       <div class="row">
         <section class="col-md-8">
-          <p class="text-center not-found-sadface">:<span class="tear">'</span>(</p>
+          <h2>the model, a layer and a class</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-07-07 00:00:00 -0400">3 years and 3 weeks ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
 
-<p class="text-center not-found-text">The page that your'e looking for doesn't seem to exist. Try your luck with a post from the sidebar.</p>
+
+<div class="post-content">
+  
+
+  
+    <div class="alert alert-info">
+  <p>This post talks about an old, dead project, SprayFire; you can <a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">read about it's demise</a>. To make a long story short, SprayFire has been replaced with <a href="https://github.com/cspray/labrador">Labrador</a> and a different philosophy on app development. All links to SprayFire have been removed.</p>
+</div>
+
+  
+
+  <p>Lately I’ve been giving some thought to the Model in SprayFire and figured I would flesh out the concept as a blog post.  I’m going to discuss how my interpretation of this, most critical of layers, differs from many you may have already encountered or read about.  For starters, the Model, in OOP designed architecture, is actually two-headed; it is both a <em>layer</em> and a <em>class</em>.</p>
+
+<h3 id="model-as-a-layer">model as a layer</h3>
+
+<p>In most common usage the Model is a layer of services designed to accomplish some real world task, likely involving the use and manipulation of data.  This is the most important of the three letters in any MVC-like architecture, essentially this layer is your application.  It is most important that this layer stays isolated from the View/Responder and Controller.  Well designed Model layers can stand alone, independent from response related systems.</p>
+
+<p>What services though?  That’s a pretty broad term and can be interpreted to be, well, any object you create.  There are specific types of services the Model layer needs though.</p>
+
+<h4 id="data-access">data access</h4>
+
+<p>As I mentioned before, the Model layer involves some kind of use and/or manipulation of data.  The <strong>data access service</strong> provides the means for that to happen.  Note that I’m calling it data <em>access</em> and not data<em>base</em>.  A lot of the times you are accessing a database, but other times you aren’t.  It might be a request to a web-based API or some other non-database service.</p>
+
+<h4 id="application-logic">application logic</h4>
+
+<p>If the data access system is <em>how</em> you work with data then the application logic is  <em>what</em> you do with that data.  Algorithms and objects that determine if the request is valid, what should occur to data and what data should be returned in response to the request is your web application.  The application logic is basically the brains of the outfit.</p>
+
+<h4 id="data-validation">data validation</h4>
+
+<p>I thought about leaving this in the application logic section.  However, I feel that this service can be sufficiently abstracted so that different Models can use the same service and simply pass in appropriate parameters.  Reasoning behind this is that web requests and data come in as a string, there’s only so many different types of things you can do to a string.  This service ensures that the business logic gets fed data in the format it expects.</p>
+
+<p>This may not necessarily be all the services that a Model needs.  Its hard to say for certain what any Model will need, each problem is different and you can solve that problem in a multitude of ways.  Depending on your design the Model layer may involve other services but chances are they’ll at the very least use something similar to that described above.</p>
+
+<h3 id="model-as-a-class">model as a class</h3>
+
+<p>You’ve built up this great Model layer that serves as an application solving some real world problem.  Now, you need a way to access and work with this layer from your response system.  This is where the Model as a class comes into play.  Think about it as the public API for the layer you just built.</p>
+
+<p>This class is not a representation of a database or a database table.  It absolutely should not extend a database connection object.  It also shouldn’t expose things related to CRUD functionality.  That’s something delegated to the data access system; if your Model exposes this kind of functionality it is leaking an abstraction.  The API for this class should cleanly represent real world tasks that need to be carried out.</p>
+
+<h3 id="in-summary">in summary</h3>
+
+<p>The Model is the most critical of systems in any MVC-like architecture.  It should be able to stand independent from any response system, possibly serving more than one response system at a time.  The Model is really two-headed involving a layer to access and work with data and, in OOP architecture, a class to serve as a public API to the layer.</p>
+
+
+</div>
 
         </section>
 

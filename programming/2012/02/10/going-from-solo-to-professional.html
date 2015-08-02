@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
+
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="Charles Sprayberry" />
+  <meta name="description" content="How I think I went from a solo, amateur developer to a paid professional." />
+  <title>going from solo to professional -- blog.cspray.net</title>
+  <link href="/all.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+
+  <body>
+
+    <header class="clearfix">
+  <h1 class="soft-margin-left pull-left"><a href="/">cspray.net</a><span class="text-muted">::programming</span></h1>
+  <ul class="social-icons no-padding no-list-icon clearfix">
+    <li class="pull-left"><a class=" social-icon--stack-overflow" href="https://stackoverflow.com/users/746010/cspray"><i class="fa fa-stack-overflow fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--github" href="https://github.com/cspray"><i class="fa fa-github-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--twitter" href="https://twitter.com/charlesspray"><i class="fa fa-twitter-square fa-3x"></i></a></li>
+    <li class="pull-left"><a class=" social-icon--facebook" href="https://www.facebook.com/cspraysworld"><i class="fa fa-facebook-official fa-3x"></i></a></li>
+    <li class="pull-left"><a  href="mailto:cspray+blog@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a></li>
+  </ul>
+</header>
+
+
+    <main class="container-fluid">
+      <div class="row">
+        <section class="col-md-8">
+          <h2>going from solo to professional</h2>
+<p class="text-muted">
+  By <strong>Charles Sprayberry</strong> <span title="2012-02-10 00:00:00 -0500">3 years and 5 months ago</span>
+  <br />
+  Category: <a href="/programming">programming</a>
+</p>
+
+
+<div class="post-content">
+  
+
+  
+
+  <p>As I alluded to in my <a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">previous post about leaving school and the state of the modern CIS program</a>,
+I recently got a job!  I’m really excited about this opportunity and wanted to take a look at it from a
+different kind of light.  What I didn’t really talk about much in the previous post was what it took
+for a solo amateur developer to join the ranks of the paid professionals.  Maybe you’re in the same
+boat and want to become a developer in one of the most awesome industries ever.  Well, this is how <strong>I</strong>
+did it; maybe some of the stuff I learned can help you in your own journey.</p>
+
+<h3 id="this-is-what-i-thinkhellip">this is what I think…</h3>
+
+<p>There’s no way anyone can really know, short of just asking, <em>why</em> they were hired by a particular
+company.  I really have no idea why I was hired by my new employer.  I can take stabs at some reasons why,
+but I really have no clue.  This is just some of the reasons I <em>think</em> they noticed me out of
+the masses and gave me a chance…even without a formal education.</p>
+
+<h3 id="actually-writing-code">actually writing code</h3>
+
+<p>This was definitely the key, essential ingredient in my career cake; the flour to your normal confectionary
+delight.  Note, I didn’t say actually publishing an app, although I have this really killer idea I’m
+working on and have some others in the pipeline.  I also think publishing your software is really important
+and something I plan on doing.  But, I haven’t actually published any live application yet.  I can’t
+rightly say that <em>publishing</em> code as software got me my job.  But writing code sure did.</p>
+
+<p>I have several repositories on <a href="http://www.github.com/cspray">my github account</a> and will likely have
+several more being created in the coming months as my ideas start to become reality.  The important
+thing though is that I’ve written, relatively, a decent amount of code.  Enough for a person to get a
+feel for my coding style and problem solving process.  This is the important part; get enough of your code
+that somebody can have a general idea for how you do things and get that code out into the open.</p>
+
+<h3 id="documenting-my-code">documenting my code</h3>
+
+<p>I make no secrets in <a href="/programming/2012/01/02/comments-arent-evil.html">my feelings on code comments</a>
+and take great pride in the consistency of my documentation.  I attempt to stick to explaining why
+a piece of code exists instead of explaining what it does.  I would hope the code itself is descriptive
+enough to tell you <em>what</em> it is doing.  More often then not you look at code and you don’t know
+<em>why</em> it is doing the thing it is doing.  This is the part you can’t tell about the code by
+reading it; this is the part you need to be putting into documentation.</p>
+
+<p>I see so much code that has seemingly no documentation whatsoever.  If you’re of the belief that documentation
+should be kept to a bare minimum then at least give me a class and method doc-block.  Regardless of
+how beautiful <em>you</em> think your code is I may not be able to immediately grasp its elegance.
+What I can grasp is English.  Give me just a little bit of that so I can know why your code exists
+and shouldn’t be removed when it’s decided 6 months from now to refactor that part of the code base.</p>
+
+<h3 id="unit-testing-my-code">unit testing my code</h3>
+
+<p>Oh man, I <strong>love</strong> unit testing.  It’s just a blast.  I like the confirmation that my code works.
+I was doing it before but just not automated and in a structured fashion.  You know what I mean.  Popping
+a few <code>var_dump()</code> throughout your code, refreshing the browser, making some changes, refreshing the
+browser again.  Don’t lie; we’ve all done it.  Well, unit testing changes all that; no more inadvertently
+dumping that entire object onto the production code because some <strike>bonehead</strike>developer
+didn’t catch that last <code>var_dump</code> before pushing to production.</p>
+
+<p>If you’re a solo developer and you think your projects are too small for unit testing, well you’re wrong.
+Go back and unit test your code, yea even if it already exists.  It tells the people that are looking
+that you <strong>actually care</strong>.  Having managed people in the real world, not in the programming
+industry but in a pizzeria, I can tell you first hand that the hardest thing to find is a person who
+cares enough to actually try.  If you care enough to actually try chances are you’re gonna figure it
+out if you keep getting back up.  There’s nothing wrong with showing that you care and your passioniate
+for a subject; in my opinion, as a solo developer unit-testing is a great way of doing this.</p>
+
+<p>Oh, and it makes your code way better.  There’s that too.</p>
+
+<h3 id="reading-books">reading books</h3>
+
+<p>Yea, that’s right.  You better work that noggin and read some books.  You can pretty much
+<a href="/my.so-archive/100-most-influential-programming-books.html">start with this list</a>
+and when you’re finished you’ll have read some of the most influential and
+timely works on software creation ever published.  For me there were 2 books in particular that really
+stuck and had a drastic influence on how I go about writing code.  The first being <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=sr_1_1?ie=UTF8&amp;qid=1328925273&amp;sr=8-1">Clean Code</a>
+by Robert Martin and the second being <a href="http://www.amazon.com/PHP-Action-Objects-Design-Agility/dp/1932394753/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1328925296&amp;sr=1-1">PHP In Action</a> by
+Dagfinn Reiersol, Marcus Baker, and Chris Shiflett.  Of course, you should read what is most relevant
+to you but chances are if you read some of the books in the list you’ll learn quite a bit of useful information.</p>
+
+<h3 id="get-involved-find-support">get involved; find support</h3>
+
+<p>Chances are in this day and age there’s some kind of community online to support your development
+needs.  I found mine at <a href="http://www.stackoverflow.com">Stack Overflow</a>, <a href="http://programmers.stackexchange.com/">Programmers</a>,
+<a href="http://codereview.stackexchange.com/">Code Review</a> and <a href="http://careers.stackoverflow.com/">Careers</a>.
+Through these <a href="http://stackexchange.com/">Stack Exchange</a> sites I’ve found all kinds of awesome reference material,
+help on coding problems, a place to find honest, critical reviews of my work, and my employer.  As a solo
+developer these tools are extremely invaluable and should be taken advantage of as much as possible;
+if you’re willing to do the work it’s almost like your own little Stack Overflow University.</p>
+
+<p>Find some support in that community.  Doing this kind of thing on your own can be mentally challening.
+How do you know if you’ve gotten it right?  How do you know if anything you’re doing even makes sense?
+Find somebody that knows what they’re doing to provide support.  Fortunately, I found that support in the
+Stack Overflow <a href="http://chat.stackoverflow.com/rooms/11/php">PHP chat room</a>.  One user in
+particular though, <a href="http://stackoverflow.com/users/285578/edorian">edorian</a>, really
+provided the kind of problem-solving help and motivation that a budding developer needs to get
+past those rough spots.  Sometimes just knowing that somebody out there cares enough to help
+you and is watching can really make you strive to put forth your best effort.  If you can
+find your own mentor then definitely hold on to that as long as possible and learn
+as much as you can from the person.</p>
+
+<h3 id="wrapping-it-up">wrapping it up</h3>
+
+<p>It was certainly an unorthodox approach to getting a job: write a bunch of documented, unit-tested
+code that never gets published, join a Q&amp;A site, find some great support, and back it up with real-life
+job experience in other industries.  Maybe perhaps not the best approach one could take but it still
+got me to my destination none the less.</p>
+
+<p>Besides the things that I talk about here I believe the most important thing to possess is
+<a href="/programming/2012/01/06/how-to-be-great-at-x.html">passion for the subject</a>
+.  I’m extremely passionate about programming; without this passion that drives me there’s no way I
+do the things that I talk about in this post.  There’s no way I spend so much time over the past 2½
+years to get to where I am.  If you’re passionate about what you’re doing and you’re willing to learn
+you will be great at what you do.  If you’re passionate about programming and are flying solo then I
+hope these bits of advice help get you to where you need to be.</p>
+
+</div>
+
+        </section>
+
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
+          <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
+          <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
+          I have a beautiful wife named Dyana.</p>
+
+          <p><a href="/about.html">Learn more about me.</a></p>
+
+          <h3>Categories</h3>
+
+          
+            <div>
+              
+              <h4>programming <span class="badge">20</span></h4>
+              <ul class="no-list-icon"><li><a href="/programming/2015/08/02/saying-goodbye-to-sprayfire.html">saying goodbye to SprayFire</a> <p class="text-muted">Posted today</p></li><li><a href="/programming/2014/01/09/you-decided-write-framework-anyway.html">you decided to write a framework anyway</a> <p class="text-muted">Posted 1 year and 6 months ago</p></li><li><a href="/programming/2013/08/21/thoughts-json-oss-license.html">thoughts on JSON and OSS licensing</a> <p class="text-muted">Posted 1 year and 11 months ago</p></li><li><a href="/programming/2013/06/06/why-i-tdd.html">why I TDD</a> <p class="text-muted">Posted 2 years and 1 month ago</p></li><li><a href="/programming/2013/03/05/you-shouldnt-write-framework.html">you shouldn't write a framework</a> <p class="text-muted">Posted 2 years and 5 months ago</p></li><li><a href="/programming/2012/08/13/programming-not-just-writing-code.html">programming is not just writing code</a> <p class="text-muted">Posted 2 years and 11 months ago</p></li><li><a href="/programming/2012/07/07/the-model-layer-and-class.html">the model, a layer and a class</a> <p class="text-muted">Posted 3 years and 3 weeks ago</p></li><li><a href="/programming/2012/06/30/when-why-use-value-objects.html">when and why to use Value Objects</a> <p class="text-muted">Posted 3 years and 1 month ago</p></li><li><a href="/programming/2012/05/13/stop-calling-them-getters-setters.html">stop calling them getters and setters</a> <p class="text-muted">Posted 3 years and 2 months ago</p></li><li><a href="/programming/2012/03/13/spaghetti-triage.html">spaghetti triage</a> <p class="text-muted">Posted 3 years and 4 months ago</p></li><li><a href="/programming/2012/02/13/a-community-gone-mad.html">a community gone mad</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/02/10/going-from-solo-to-professional.html">going from solo to professional</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li><li><a href="/programming/2012/01/29/DI-and-global-state.html">DI and global state</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/24/why-you-should-use-DI.html">why you should use DI</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/21/you-better-pay-attention-to-details.html">you better pay attention to details</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/17/dog-training-your-code.html">dog training your code</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/06/how-to-be-great-at-x.html">how to be great at $x</a> <p class="text-muted">Posted 3 years and 6 months ago</p></li><li><a href="/programming/2012/01/03/sprayfire-and-mvc-design-pattern.html">SprayFire and MVC design pattern</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2012/01/02/comments-arent-evil.html">comments aren't evil; comment your code</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li><li><a href="/programming/2011/12/31/writing-better-commits-with-github.html">writing better commits with github</a> <p class="text-muted">Posted 3 years and 7 months ago</p></li></ul>
+            </div>
+          
+            <div>
+              
+              <h4>tech-and-society <span class="badge">2</span></h4>
+              <ul class="no-list-icon"><li><a href="/tech-and-society/2013/07/25/web-dev-problems.html">Web Development, the problem</a> <p class="text-muted">Posted 2 years and 1 week ago</p></li><li><a href="/tech-and-society/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html">why I quit school and what it would take to stay</a> <p class="text-muted">Posted 3 years and 5 months ago</p></li></ul>
+            </div>
+          
+        </aside>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
