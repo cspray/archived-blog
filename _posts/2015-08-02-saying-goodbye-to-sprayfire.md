@@ -10,30 +10,30 @@ category: programming
 If you've read my blog before you know about a project I worked on called SprayFire.
 It was my homebrewed framework. It taught me a lot about design patterns, the need
 for modular libraries, and helped get me a job. Some time ago I deleted the project.
-This post talks about why I deleted the project&hellip; and what took its place.
+This post talks about why I deleted the project and what I've been working on
+instead.
 
 ## why it had to go
 
 I started to use SprayFire and realized it had a critical flaw for how I like to
-structure and build applications. I've come to the belief that small, hyper-specific
-libraries wired together is a better solution than one, monolithic architecture.
+structure and build applications. I've come to believe that small, hyper-specific
+libraries wired together is a better solution than a single, monolithic architecture.
 There's a lot of really great libraries already out there that do what individual
-SprayFire components did, only better.
+SprayFire components did, only better. It only makes sense to use them.
 
 The project, while useful, simply wasn't how I believe applications should be built
 after lessons learned from experience. Instead of restructuring the framework for
-what would be a 4th time I decided to simply start completely fresh with a brand
-new project.
+what would be a 4th time I decided to start completely fresh. Instead of building
+a framework I started writing specific libraries instead.
 
-While SprayFire, and its replacement, is an educational experience I also *want*
-other people to build an application on top of my framework. Knowing that the
-project wasn't something I believed in or supported I removed it from GitHub
-instead of allowing it to exist. Sometimes programmers can develop an emotional
-attachment with their code; no such attachment existed here. The code didn't
-serve its purpose and was removed.
+While SprayFire was an educational experience I also *want* other people to build
+stuff with my work. Knowing that the project wasn't something I believed in or
+supported I removed it from GitHub instead of allowing it to exist. Sometimes
+programmers can develop an emotional attachment with their code; no such attachment
+existed here. The code didn't serve its purpose and was removed.
 
 I've went back through all my old posts that reference SprayFire and have removed
-links along with putting up a disclaimer where the project was mentioned.
+links along with putting up a disclaimer pointing out that the project doesn't exist.
 
 ## what I've been up to
 
@@ -44,10 +44,19 @@ libraries. Some of the cooler things include:
 <div class="github-repo-card">
   <h3 class="github-repo-card--name">Labrador</h3>
   <p class="github-repo-card--description">
-    A microframework for PHP7 that ties together a DI Container, an event emitter,
+    A library for PHP7 that ties together a DI Container, an event emitter,
     and a plugin system to facilitate building small-to-medium sized PHP applications.
   </p>
   <a href="https://github.com/cspray/labrador">https://github.com/cspray/labrador</a>
+</div>
+
+<div class="github-repo-card">
+  <h3 class="github-repo-card--name">Labrador HTTP</h3>
+  <p class="github-repo-card--description">
+    A microframework using Labrador, a highly-performant routing system, and
+    a well-known HTTP abstracto to help create web-based PHP applications.
+  </p>
+  <a href="https://github.com/cspray/labrador-http">https://github.com/cspray/labrador-http</a>
 </div>
 
 <div class="github-repo-card">
