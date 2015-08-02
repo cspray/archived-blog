@@ -1,3 +1,7 @@
+header h1 {
+  font-size: 250%;
+}
+
 p {
   font-size: 100%;
   line-height: 140%;
@@ -13,6 +17,18 @@ p {
 
 .no-list-icon {
   list-style: none;
+}
+
+.hard-margin-top {
+  margin-top: 1em;
+}
+
+.soft-margin-top {
+  margin-top: .5em;
+}
+
+.hard-margin-right {
+  margin-right: 1em;
 }
 
 .soft-margin-right {
@@ -36,16 +52,103 @@ p {
 }
 
 .profile-card {
-  width: 320px
+  width: 240px;
+  margin-top: .5em;
+  margin-right: 1em;
 }
 
 .profile-card--image {
-  border-radius: 160px;
+  border-radius: 120px;
 }
 
 .profile-card--description {
   padding: .5em;
   font-size: 110%;
+  margin: 1.5em 0;
 }
 
+.social-icons {
+  margin-top: 20px;
+  float: right;
+  margin-right: .5em;
+}
 
+.social-icons li {
+  float: left;
+  margin-right: .5em;
+  opacity: .75;
+}
+
+.social-icons li:hover {
+  opacity: 1;
+}
+
+.social-icon--github, .profile-card--social-icon--github:hover {
+  color: #666;
+}
+
+.social-icon--twitter, .profile-card--social-icon--twitter:hover {
+  color: #55acee;
+}
+
+.social-icon--stack-overflow, .profile-card--social-icon--stack-overflow:hover {
+  color: #fe7a15;
+}
+
+.social-icon--facebook, .profile-card--social-icon--facebook:hover {
+  color: #3b5998;
+}
+
+.label-php {
+  background-color: rgb(136, 146, 191);
+  color: white;
+}
+
+.label-ruby {
+   background-color: rgb(189, 48, 42);
+   color: white;
+}
+
+.label-ember {
+  background-color: rgb(254, 119, 90);
+  color: white;
+}
+
+.label-postgresql {
+  background-color: rgb(21, 146, 193);
+  color: white;
+}
+
+.label-git {
+  background-color: rgb(246, 77, 39);
+  color: white;
+}
+
+.post-content {
+  padding-right: 2em;
+}
+
+.github-repo-card {
+  background-color: #f5f5f5;
+  width: 350px;
+  padding: 1em;
+  float: left;
+  margin-top: 1em;
+  margin-right: 1em;
+  height: 200px;
+  position: relative;
+}
+
+.github-repo-card--name {
+  margin: 0;
+}
+
+.github-repo-card--description {
+  margin-top: 1em;
+}
+
+.github-repo-card a {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}

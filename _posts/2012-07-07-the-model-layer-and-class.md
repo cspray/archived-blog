@@ -4,13 +4,15 @@ title: the model, a layer and a class
 description: The Model in the SprayFire framework, both a layer and a class
 author: Charles Sprayberry
 published: true
+category: programming
+references_sprayfire: true
+redirect_from:
+  - /2012/07/07/the-model-layer-and-class.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/07/07-the-model-layer-and-class.html
 disqus_url: http://cspray.github.com/2012/07/07/the-model-layer-and-class
-category: programming
-references_sprayfire: true
 ---
 
 Lately I've been giving some thought to the Model in SprayFire and figured I would flesh out the concept as a blog post.  I'm going to discuss how my interpretation of this, most critical of layers, differs from many you may have already encountered or read about.  For starters, the Model, in OOP designed architecture, is actually two-headed; it is both a *layer* and a *class*.

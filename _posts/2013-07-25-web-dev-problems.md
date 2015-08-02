@@ -4,12 +4,14 @@ title: Web Development, the problem
 description: Part 1 of a 2 part series on the problems facing the web development industry today
 author: Charles Sprayberry
 published: true
+category: tech-and-society
+redirect_from:
+  - /2013/07/25/web-dev-problems.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2013/07/25-web-dev-problems.html
 disqus_url: http://cspray.github.com/2013/07/25/web-dev-problems
-category: tech-and-society
 ---
 
 This is part 1 of a 2 part series regarding my thoughts on the current state of web development. This article discusses the problems the web software industry faces today. The second part will discuss some potential solutions to some of the problems discussed.

@@ -4,12 +4,14 @@ title: why you should use DI
 description: A post talking about dependency injection, how its use has benefited me and other reasons to embrace asking for things instead of looking for them.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/01/24/why-you-should-use-DI.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/24/why-you-should-use-DI
 disqus_url: http://cspray.github.com/2012/01/24/why-you-should-use-DI.html
-category: programming
 ---
 
 [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_injection) is all the rage

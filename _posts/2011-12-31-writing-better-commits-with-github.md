@@ -4,14 +4,16 @@ title: writing better commits with github
 description: How to make better commits with github by committing frequently, consistently formatting your messages and documenting what you want to do.
 author: Charles Sprayberry
 published: true
+category: programming
+references_sprayfire: true
+is_stale: true
+redirect_from:
+  - /2011/12/31/writing-better-commits-with-github.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2011/12/31/writing-better-commits-with-github
 disqus_url: http://cspray.github.com/2011/12/31/writing-better-commits-with-github.html
-category: programming
-references_sprayfire: true
-is_stale: true
 ---
 
 <p>As the development of SprayFire progresses I'm constantly evaluating what I'm doing, how I'm doing it

@@ -4,14 +4,16 @@ title: SprayFire and MVC design pattern
 description: A look at the Model-View-Controller design pattern and the way the pattern is implemented in SprayFire
 author: Charles Sprayberry
 published: true
+category: programming
+references_sprayfire: true
+redirect_from:
+  - /2012/01/03/sprayfire-and-mvc-design-pattern.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/03/sprayfire-and-mvc-design-pattern
 disqus_url: http://cspray.github.com/2012/01/03/sprayfire-and-mvc-design-pattern.html
 disqus_title: SprayFire and MVC design pattern
-category: programming
-references_sprayfire: true
 ---
 MVC must be one of the most over-used acronyms in the PHP framework community.  In SprayFire docs
 and source code I've made a concerted effort to avoid use of the term MVC, except where appropriate.  Too
@@ -98,13 +100,11 @@ SprayFire's interpretation of the MVC design pattern.
 
 ### tl;dr
 
-<code>
 - Model === Your app
 - Model !== database storage
 - View === Responder
 - View !== HTML
 - Controller === Mediator
-</code>
 
 ### wrapping it up
 

@@ -4,12 +4,14 @@ title: thoughts on JSON and OSS licensing
 description: My 2 cents on the latest PHP drama involving JSON.org's software license
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2013/08/21/thoughts-json-oss-license.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2013/08/21-thoughts-json-oss-license.html
 disqus_url: http://cspray.github.com/2013/08/21-thoughts-json-oss-license.html
-category: programming
 ---
 
 If you're not aware, recently there's been some PHP drama about [PHP "losing" JSON support](http://philsturgeon.co.uk/blog/2013/08/fud-cracker-php-55-never-lost-json-support). Obviously this isn't the case and it turns out some people, getting their PHP through certain distributions, weren't getting the JSON extension by default. It all boils back to [this "bug" reported to PHP](https://bugs.php.net/bug.php?id=63520).

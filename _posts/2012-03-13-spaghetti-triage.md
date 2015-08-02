@@ -4,12 +4,14 @@ title: spaghetti triage
 description: A look at what should be the first thing you fix in a code full of spaghetti
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/03/13/spaghetti-triage.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/03/13/spaghetti-triage.html
 disqus_url: http://cspray.github.com/2012/03/13/spaghetti-triage.html
-category: programming
 ---
 
 I was having lunch today with a fellow developer and the conversation included flawed web-based systems.

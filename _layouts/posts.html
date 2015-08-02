@@ -10,12 +10,14 @@ layout: default
 </p>
 
 
-{% if page.is_stale %}
-  {% include stale-disclaimer.html %}
-{% endif %}
+<div class="post-content">
+  {% if page.is_stale %}
+    {% include stale-disclaimer.html %}
+  {% endif %}
 
-{% if page.references_sprayfire %}
-  {% include sprayfire-disclaimer.html %}
-{% endif %}
+  {% if page.references_sprayfire %}
+    {% include sprayfire-disclaimer.html %}
+  {% endif %}
 
-{{content}}
+  {{content}}
+</div>

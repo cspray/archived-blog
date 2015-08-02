@@ -1,1 +1,1 @@
-gems: [jekyll-timeago]
+gems: [jekyll-timeago, jekyll-redirect-from]

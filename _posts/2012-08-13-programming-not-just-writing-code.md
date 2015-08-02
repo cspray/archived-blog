@@ -4,12 +4,14 @@ title: programming is not just writing code
 description: While knowing how to write code is important other aspects of the programming profession are equally critical to your success
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/08/13/programming-not-just-writing-code.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/08/13-programming-not-just-writing-code.html
 disqus_url: http://cspray.github.com/2012/08/13/programming-not-just-writing-code
-category: programming
 ---
 
 When I first started my journey to become a professional programmer almost 2 years ago

@@ -4,13 +4,15 @@ title: comments aren't evil; comment your code
 description: Why comments aren't necessarily a bad thing along with reasons why you should document your code
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/01/02/comments-arent-evil.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/02/comments-arent-evil
 disqus_url: http://cspray.github.com/2012/01/02/comments-arent-evil.html
 disqus_title: comments aren't evil; comment your code
-category: programming
 ---
 
 <ul class="no-list-icon no-padding">
@@ -43,7 +45,7 @@ bad.</p>
 code.  Unnecessary comments really are bad for your codebase.  They're clutter, can be misleading and
 are a pain to keep up to date, so nobody keeps them up to date.  And certainly if you're doing something like...</p>
 
-{% highlight php %}
+{% highlight php linenos %}
 <?php
 
 $foo = 'foo';     // assign 'foo' to $foo
@@ -72,7 +74,7 @@ the <i>type</i> being returned.  This is highly important with a dynamically typ
 really ever know what type a variable is until you do some kind of test on it.  Here's an example of a,
 <i>gasp</i>, documented getter.</p>
 
-{% highlight php %}
+{% highlight php linenos %}
 <?php
     // inside a class somewhere...
 
@@ -101,7 +103,7 @@ I'm gonna give you what you need.</p>
 It doesn't do much but trap errors and store the information in an array.  Anyway, here's the closure, without
 any comments:</p>
 
-{% highlight php %}
+{% highlight php linenos %}
 <?php
 $errors = array();
 
@@ -162,7 +164,7 @@ errors will occur later.</p>
 
 <p>Comment it!</p>
 
-{% highlight php %}
+{% highlight php linenos %}
 <?php
     // ...
 

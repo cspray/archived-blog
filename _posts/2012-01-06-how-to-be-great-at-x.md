@@ -4,6 +4,8 @@ title: how to be great at $x
 description: How passion, and what that passion motivates you to do, determines whether you'll be great or not
 author: Charles Sprayberry
 published: true
+redirect_from:
+  - /2012/01/06/how-to-be-great-at-x.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast

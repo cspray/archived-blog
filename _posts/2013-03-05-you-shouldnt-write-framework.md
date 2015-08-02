@@ -4,13 +4,15 @@ title: you shouldn't write a framework
 description: Discussing why you should but mostly shouldn't write a PHP framework
 author: Charles Sprayberry
 published: true
+category: programming
+references_sprayfire: true
+redirect_from:
+  - /2013/03/05/you-shouldnt-write-framework.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2013/03/05-you-shouldnt-write-framework.html
 disqus_url: http://cspray.github.com/2013/02/12/you-shouldnt-write-framework
-category: programming
-references_sprayfire: true
 ---
 
 It is almost a rite of passage in the PHP community. If you've ever done any serious object oriented PHP you've probably created, or at least used, a framework of some kind. There are literally thousands of shitty frameworks out there that will never get used for anything. Mine is SprayFire.

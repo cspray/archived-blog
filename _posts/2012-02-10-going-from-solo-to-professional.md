@@ -4,12 +4,14 @@ title: going from solo to professional
 description: How I think I went from a solo, amateur developer to a paid professional.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/02/10/going-from-solo-to-professional.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/02/10/going-from-solo-to-professional
 disqus_url: http://cspray.github.com/2012/02/10/going-from-solo-to-professional.html
-category: programming
 ---
 
 As I alluded to in my <a href="{% post_url 2012-02-06-why-I-quit-school-what-it-would-take-to-stay %}">previous post about leaving school and the state of the modern CIS program</a>,

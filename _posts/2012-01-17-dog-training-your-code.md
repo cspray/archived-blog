@@ -4,13 +4,15 @@ title: dog training your code
 description: Dog training can teach a person a lot about themselves and their relationship with canines.  The skills in dog training can also be applied to programming.
 author: Charles Sprayberry
 published: true
+category: programming
+references_sprayfire: true
+redirect_from:
+  - /2012/01/17/dog-training-your-code.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/17/dog-training-your-code
 disqus_url: http://cspray.github.com/2012/01/17/dog-training-your-code.html
-category: programming
-references_sprayfire: true
 ---
 
 When I worked with the [Monks of New Skete](http://www.newskete.org/) I got a first-hand

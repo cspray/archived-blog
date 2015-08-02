@@ -9,11 +9,18 @@
 
     <main class="container-fluid">
       <div class="row">
-        <section class="col-md-7">
+        <section class="col-md-8">
           {{content}}
         </section>
 
-        <aside class="col-md-5">
+        <aside class="col-md-4">
+          <div class="alert alert-warning">
+            <p>
+              The site is currently undergoing a migration. <strong>Comments are temporarily disabled
+              until the migration is complete</strong>. I appreciate the activity from the occiasional
+              reader and plan on enabling comments again soon.
+            </p>
+          </div>
           <p>My name is Charles Sprayberry. I <a href="https://github.com/cspray">write software for the web</a>,
           <a href="https://designbook.com">help your startup raise money</a>, play video games, and train dogs.
           I have a beautiful wife named Dyana.</p>
@@ -34,14 +41,14 @@
     </main>
 
     <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-28863236-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28863236-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
     </script>
   </body>
 </html>

@@ -4,12 +4,14 @@ title: why I quit school and what it would take to stay
 description: Recently faced the decision--stay in school or take the job you're going to school for?
 author: Charles Sprayberry
 published: true
+category: tech-and-society
+redirect_from:
+  - /2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/02/06/why-I-quit-school-what-it-would-take-to-stay
 disqus_url: http://cspray.github.com/2012/02/06/why-I-quit-school-what-it-would-take-to-stay.html
-category: tech-and-society
 ---
 About three years ago I moved to the upstate New York area as a start to "rebooting" my life.  I
 had entered the full-time work force after graduation and 10 years later, while the resume looked ok,

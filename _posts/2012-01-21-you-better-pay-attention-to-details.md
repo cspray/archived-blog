@@ -4,12 +4,14 @@ title: you better pay attention to details
 description: The smallest of details can make or break a product.  You damn well better pay attention to them.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/01/21/you-better-pay-attention-to-details.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/21/you-better-pay-attention-to-details
 disqus_url: http://cspray.github.com/2012/01/21/you-better-pay-attention-to-details.html
-category: programming
 ---
 
 I like tea.  Particularly sweet tea.  When its cold give it to me iced; if its hot I'll take it
@@ -24,12 +26,11 @@ encounter a horrendously designed tea bag it really stands out.
 
 ### meet the horrendous design
 
-<p style="overflow:auto;">
-<img src="/img/lipton-tea-bag-design.jpg" class="float-left soft-margin-right" alt="Lipton's horrible tea-bag design" width="275" height="270" />
+<img src="/img/lipton-tea-bag-design.jpg" class="pull-left soft-margin-right" alt="Lipton's horrible tea-bag design" width="275" height="270" />
 Ah, good ol' Lipton.  If you drink tea in America you have to know this company.  They're almost synonymous
 with the stuff.  At first glance this product *appears* to take care of all the things required
 in a good tea bag.  There's a pouch there with some tea leaves and a string with a handle. But, look again.
-At the top where they *<strong>taped</strong>* the handle to the tea bag.  That one crucial aspect
+At the top where they **taped** the handle to the tea bag.  That one crucial aspect
 of the tea bag totally ruins everything else.  Why?  Because you have to use the most delicate touch
 to remove the handle from the tea bag; otherwise the bag splits open and you risk tea leaves infiltrating
 your water.  Tea leaves entering the water is the most egregious of tea-related offenses and is, quite

@@ -4,13 +4,15 @@ title: you decided to write a framework anyway
 description: If you're gonna write your own PHP framework here are some tips to help you get a good start and the best bang for your development buck.
 author: Charles Sprayberry
 published: true
+references_sprayfire: true
+category: programming
+redirect_from:
+  - /2014/01/09/you-decided-write-framework-anyway.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2014/01/09-you-decided-write-framework-anyway.html
 disqus_url: http://cspray.github.com/2014/01/09/you-decided-write-framework-anyway.html
-references_sprayfire: true
-category: programming
 ---
 
 In case you missed my post [you shouldn't write a framework](http://cspray.github.io/2013/03/05/you-shouldnt-write-framework.html) I'm not a huge proponent of writing your own PHP framework. This may sound contradictory coming from a guy who has devoted a not-insignificant amount of time working on [his own framework](https://github.com/cspray/labrador). Regardless of all the reasons why you shouldn't write your own framework you're probably going to anyway; it almost seems to be a rite of passage in the PHP community. I'm not here to convince you of the folly in doing so but instead give you some advice for your own framework creation. I've always thought if you're gonna do something stupid you might as well do it as smartly as you can.

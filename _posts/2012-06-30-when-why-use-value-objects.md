@@ -4,13 +4,15 @@ title: when and why to use Value Objects
 description: Taking a look at when and why to use Value Objects
 author: Charles Sprayberry
 published: true
+references_sprayfire: true
+category: programming
+redirect_from:
+  - /2012/06/30/when-why-use-value-objects.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/06/30-when-why-use-value-objects.html
 disqus_url: http://cspray.github.com/2012/06/30/when-why-use-value-objects
-references_sprayfire: true
-category: programming
 ---
 
 Recently I've dived back into SprayFire and one of the things that I have been working on is making use of [Value Objects](http://martinfowler.com/bliki/ValueObject.html).  I have given some thought to when should I use a Value Object and when should I just use an associative array.  After all, PHP is not a purely object-oriented language, there are many paths to your destination, and arrays in PHP are extremely powerful and useful.  But, then again, so are objects.  When should you use a value object over an array?  *Why* should you use a Value Objects?

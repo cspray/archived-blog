@@ -4,12 +4,14 @@ title: stop calling them getters and setters
 description: Looking at why I won't be calling them getters and setters anymore and how you can fix boilerplate style getters/setters.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/05/13/stop-calling-them-getters-setters.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/05/19-stop-calling-them-getters-setters.html
 disqus_url: http://cspray.github.com/2012/05/13/stop-calling-them-getters-setters
-category: programming
 ---
 
 I was having a talk with a fellow programmer and he said something to the effect that if

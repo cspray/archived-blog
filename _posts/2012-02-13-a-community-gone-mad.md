@@ -4,12 +4,14 @@ title: a community gone mad
 description: How zealously following a guide can be detrimental to all.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/02/13/a-community-gone-mad.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/02/13/a-community-gone-mad
 disqus_url: http://cspray.github.com/2012/02/13/a-community-gone-mad.html
-category: programming
 ---
 
 I mentioned in my <a href="{% post_url 2012-02-10-going-from-solo-to-professional %}">last post about going from amateur to professional developer</a>

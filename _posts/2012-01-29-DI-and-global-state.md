@@ -4,12 +4,14 @@ title: DI and global state
 description: A look at how dependency injection can help combat the global state produced by Singletons.
 author: Charles Sprayberry
 published: true
+category: programming
+redirect_from:
+  - /2012/01/29/DI-and-global-state.html
 
 disqus_enabled: true
 disqus_shortname: ramblingsofaphpenthusiast
 disqus_identifier: /2012/01/29/DI-and-global-state
 disqus_url: http://cspray.github.com/2012/01/29/DI-and-global-state.html
-category: programming
 ---
 In a previous post I talked about <a href="{% post_url 2012-01-24-why-you-should-use-DI %}">
 why you should use Dependency Injection</a>. It garnered a little bit of attention, getting
