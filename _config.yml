@@ -1,1 +1,2 @@
 gems: [jekyll-timeago, jekyll-redirect-from]
+exclude: [build.php]
